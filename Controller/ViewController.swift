@@ -110,5 +110,7 @@ class ViewController: UIViewController {
         screenView.text.append(" = \(operationsToReduce.first!)")
     }
 
+    @IBAction func returnButton(_ sender: Any) {
+    }
 }
 
