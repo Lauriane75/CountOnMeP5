@@ -9,11 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet var numberButtons: [UIButton]!
+    @IBOutlet weak var screenView: UITextView!
+
+    @IBOutlet weak var numberButtons: UIButton!
     
     var elements: [String] {
-        return textView.text.split(separator: " ").map { "\($0)" }
+        return screenView.text.split(separator: " ").map { "\($0)" }
     }
     
     // Error check computed variables
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
     }
     
     var expressionHaveResult: Bool {
-        return textView.text.firstIndex(of: "=") != nil
+        return screenView.text.firstIndex(of: "=") != nil
     }
     
     // View Life cycles
@@ -47,15 +48,15 @@ class ViewController: UIViewController {
         }
         
         if expressionHaveResult {
-            textView.text = ""
+            screenView.text = ""
         }
         
-        textView.text.append(numberText)
+        screenView.text.append(numberText)
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
         if canAddOperator {
-            textView.text.append(" + ")
+            screenView.text.append(" + ")
         } else {
             let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -65,7 +66,7 @@ class ViewController: UIViewController {
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
         if canAddOperator {
-            textView.text.append(" - ")
+            screenView.text.append(" - ")
         } else {
             let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -106,7 +107,7 @@ class ViewController: UIViewController {
             operationsToReduce.insert("\(result)", at: 0)
         }
         
-        textView.text.append(" = \(operationsToReduce.first!)")
+        screenView.text.append(" = \(operationsToReduce.first!)")
     }
 
 }
