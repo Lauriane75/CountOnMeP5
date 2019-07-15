@@ -9,17 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
+    // outlet
     @IBOutlet weak var screenView: UITextView!
-
-    @IBOutlet weak var numberButtons: UIButton!
-    
+    @IBOutlet var numberButtons: [UIButton]!
+    @IBOutlet var operatorButtons: [UIButton]!
+    // properties
     var elements: [String] {
         return screenView.text.split(separator: " ").map { "\($0)" }
     }
     
+ //   var arrayOfElement = [""]
+    
     // Error check computed variables
     var expressionIsCorrect: Bool {
-        return elements.last != "+" && elements.last != "-"
+        return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "*"
     }
     
     var expressionHaveEnoughElement: Bool {
@@ -27,7 +30,7 @@ class ViewController: UIViewController {
     }
     
     var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-"
+        return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "*"
     }
     
     var expressionHaveResult: Bool {
@@ -37,9 +40,13 @@ class ViewController: UIViewController {
     // View Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    //    arrayOfElement = setElement() as! [String]
     }
-    
+    // func
+    // return array of elements split
+//    func setElement() -> [String?] {
+//        return elements
+//    }
     
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
@@ -53,6 +60,20 @@ class ViewController: UIViewController {
         
         screenView.text.append(numberText)
     }
+    
+    @IBAction func tappedOperatorButtons(_ sender: Any) {
+        guard let operatorText = (sender as AnyObject).title(for: .normal) else {
+            return
+        }
+        if canAddOperator {
+            screenView.text.append(operatorText)
+        } else {
+            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
+    
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
         if canAddOperator {
@@ -109,8 +130,12 @@ class ViewController: UIViewController {
         
         screenView.text.append(" = \(operationsToReduce.first!)")
     }
-
-    @IBAction func returnButton(_ sender: Any) {
+    @IBAction func tappedReturnButton(_ sender: Any) {
+       screenView.text.removeLast()
     }
-}
+    
+    @IBAction func tappedRemoveButton(_ sender: Any) {
+    screenView.text.removeAll()
+    }
+} // end
 
