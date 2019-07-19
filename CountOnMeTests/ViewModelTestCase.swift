@@ -18,14 +18,13 @@ class ViewModelTestCase: XCTestCase {
         super.setUp()
         viewModel = ViewModel()
     }
-    
-    func testGivenLeftIs1AndRightIs2_WhenOperandIsPlus_ThenResultIs3() {
-        viewModel.left = 1
-        viewModel.right = 2
-        viewModel.operand = " + "
-//        
 //
-//        XCTAssertTrue(viewModel.result = "3")
-    }
-    
+//    func testGivenLeftIs1AndRightIs2_WhenOperandIsPlus_ThenResultIs3() {
+//        //        viewModel.displayedText
+//        //        viewModel.right = 2
+//        //        viewModel.operand = " + "
+//        //
+//        //
+//        //        XCTAssertTrue(viewModel.result = "3")
+//    }
 }

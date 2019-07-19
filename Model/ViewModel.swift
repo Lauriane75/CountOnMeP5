@@ -14,6 +14,12 @@ class ViewModel {
     
     var displayedText: ((String) -> Void)?
     
+    var nextScreen: ((Screen) -> Void)?
+    
+    enum Screen {
+        case alert(title: String, message: String)
+    }
+
     // MARK: - Private properties
     
     private var stringElement: String {
@@ -23,42 +29,41 @@ class ViewModel {
         return temporaryText.split(separator: " ").map { "\($0)" }
     }
     private var temporaryText = ""
-    //
-//    private var temporaryText: [String] = [] {
-//        didSet {
-//            displayedText?(temporaryText.joined(separator: " "))
-//        }
-//    }
+    
     
     // Error check computed variables
-    private var expressionIsCorrect: Bool {
-        return elements.last != " + " && elements.last != " - "
-    }
+//    private var expressionIsCorrect: Bool {
+//        return elements.last != " + " && elements.last != " - "
+//    }
     
     private var expressionHaveEnoughElement: Bool {
-        return elements.count >= 3
+        return elements.count >= 4
     }
     
     private var canAddOperator: Bool {
-        return elements.last != " + " && elements.last != " - "
+        return elements.last != " + " && elements.last != " - " && elements.last != " x " && elements.last != " / "
     }
     
     private var expressionHaveResult: Bool {
         return elements.firstIndex(of: "=") != nil
     }
     
-     var left: Double {
+
+    // MARK: - Properties
+    
+    var left: Double {
         return Double(elements[0])!
     }
     
-     var right: Double {
+    var right: Double {
         return Double(elements[2])!
     }
-     var operand: String {
+    var operand: String {
         return (elements[1])
     }
-
+    
     // MARK: - Inputs
+    
     
     func viewDidLoad() -> Void {
         displayedText?("1 + 2 = 3")
@@ -67,7 +72,12 @@ class ViewModel {
     // buttons
     // Equal Button
     func didPressEqualButton() {
-    var operationsToReduce = elements
+        if expressionHaveEnoughElement {
+            nextScreen?(.alert(title: "Zéro", message: "Démarrez un nouveau calcul !"))
+            temporaryText.removeAll()
+        }
+        displayedText?("")
+        var operationsToReduce = elements
         while operationsToReduce.count > 1 {
             var result: Double
             for (_, _) in operationsToReduce.enumerated() {
@@ -122,13 +132,17 @@ class ViewModel {
     
     // Remove Button
     func didPressRemoveButton() {
-        temporaryText.removeAll()
-        displayedText?(stringElement)
+        if temporaryText.last != nil {
+            temporaryText.removeAll()
+        }
+        displayedText?("")
     }
     
     // Return Button
     func didPressReturnButton() {
-        temporaryText.removeLast()
+        if temporaryText.last != nil {
+            temporaryText.removeLast()
+        }
         displayedText?(stringElement)
     }
     

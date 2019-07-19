@@ -279,7 +279,7 @@
                                             <action selector="tappedRemoveButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="zSM-QO-M5W"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMj-Of-bCU">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMj-Of-bCU">
                                         <rect key="frame" x="244" y="0.0" width="46" height="71.5"/>
                                         <color key="backgroundColor" red="0.94643473759999996" green="0.64318747399999998" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -287,7 +287,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedEqualButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="t2E-a2-FH3"/>
+                                            <action selector="tappedOperatorButtons:" destination="eqK-jh-KKu" eventType="touchUpInside" id="nxw-gp-sr1"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -327,7 +327,7 @@
                         <viewLayoutGuide key="safeArea" id="c96-DQ-UFU"/>
                     </view>
                     <connections>
-                        <outlet property="screenView" destination="T2H-yn-nBB" id="Xzc-vW-NAL"/>
+                        <outlet property="screenTextView" destination="T2H-yn-nBB" id="Xzc-vW-NAL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7XP-3c-sJZ" sceneMemberID="firstResponder"/>

@@ -9,14 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-    // outlet
-    @IBOutlet weak var screenView: UITextView!
+    
+    // MARK: - Outlets
+    @IBOutlet weak var screenTextView: UITextView!
     
     // MARK: - Properties
     private let viewModel = ViewModel()
-
     
-    // MARK: Life cycle
+    private lazy var alertView = UIAlertController()
+    
+    // MARK: - View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         bind(to: viewModel)
@@ -24,12 +26,20 @@ class ViewController: UIViewController {
     }
     
     private func bind(to viewModel: ViewModel) {
-        viewModel.displayedText = { text in
-            self.screenView.text = text
+        viewModel.displayedText = { [weak self] text in
+            self?.screenTextView.text = text
+        }
+        
+        viewModel.nextScreen = { [weak self] screen in
+            DispatchQueue.main.async {
+                if case .alert(title: let title, message: let message) = screen {
+                    self?.presentAlert(with: title, message: message)
+                }
+            }
         }
     }
     
-    // View actions
+    // MARK: - View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
@@ -40,34 +50,29 @@ class ViewController: UIViewController {
     @IBAction func tappedOperatorButtons(_ sender: UIButton) {
         let index = sender.tag
         viewModel.didSelectOperator(at: index)
-        //        } else {
-        //            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
-        //            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        //            self.present(alertVC, animated: true, completion: nil)
-        //        }
+        if sender.tag == 5 {
+            viewModel.didPressEqualButton()
+        }
     }
 
-    @IBAction func tappedEqualButton(_ sender: UIButton) {
-        viewModel.didPressEqualButton()
-        //        guard viewModel.expressionIsCorrect else {
-        //            let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
-        //            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        //            return self.present(alertVC, animated: true, completion: nil)
-        //        }
-        //
-        //        guard viewModel.expressionHaveEnoughElement else {
-        //            let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
-        //            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        //            return self.present(alertVC, animated: true, completion: nil)
-        //        }
-        //
-    }
     @IBAction func tappedReturnButton(_ sender: Any) {
         viewModel.didPressReturnButton()
     }
     
     @IBAction func tappedRemoveButton(_ sender: Any) {
         viewModel.didPressRemoveButton()
+    }
+    
+    // MARK: - Alert
+    
+    private func presentAlert(with title: String, message: String) {
+        alertView.title = title
+        alertView.message = message
+        let okAction = UIAlertAction(title: "OK",
+                                     style: .cancel,
+                                     handler: nil)
+        alertView.addAction(okAction)
+        self.present(alertView, animated: true, completion: nil)
     }
 } // end
 
