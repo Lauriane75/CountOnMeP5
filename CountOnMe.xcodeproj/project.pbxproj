@@ -12,9 +12,8 @@
 		1FA43BD8224E569900F565CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD6224E569900F565CB /* Main.storyboard */; };
 		1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD9224E569A00F565CB /* Assets.xcassets */; };
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
+		2FC1C02622E20D260024AC7E /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC1C02522E20D260024AC7E /* ViewModelTests.swift */; };
 		D3BEC14822DF2B8300BE7802 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEC14722DF2B8300BE7802 /* ViewModel.swift */; };
-		F6A0660222E10844001E1732 /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A0660122E10844001E1732 /* CountOnMeTests.swift */; };
-		F6A0660A22E10858001E1732 /* ViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A0660922E10858001E1732 /* ViewModelTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +34,11 @@
 		1FA43BD9224E569A00F565CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FA43BDC224E569A00F565CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FA43BDE224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FC1C02422E20D260024AC7E /* CountOnMeTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CountOnMeTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		2FC1C02522E20D260024AC7E /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		D3BEC14722DF2B8300BE7802 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		F6A065FF22E10844001E1732 /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6A0660122E10844001E1732 /* CountOnMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeTests.swift; sourceTree = "<group>"; };
 		F6A0660322E10844001E1732 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6A0660922E10858001E1732 /* ViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTestCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +62,7 @@
 		1FA43BC6224E569900F565CB = {
 			isa = PBXGroup;
 			children = (
-				D399418822CE5B620068FDC8 /* Model */,
-				D399418A22CE5B6D0068FDC8 /* Controller */,
-				D399418B22CE5B7A0068FDC8 /* Supporting Files */,
-				1FA43BD1224E569900F565CB /* CountOnMe */,
+				2FC1C02322E20CE90024AC7E /* CountOnMe */,
 				F6A0660022E10844001E1732 /* CountOnMeTests */,
 				1FA43BD0224E569900F565CB /* Products */,
 			);
@@ -81,11 +77,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1FA43BD1224E569900F565CB /* CountOnMe */ = {
+		2FC1C02322E20CE90024AC7E /* CountOnMe */ = {
 			isa = PBXGroup;
 			children = (
-				1FA43BDE224E569A00F565CB /* Info.plist */,
-				F6A0660922E10858001E1732 /* ViewModelTestCase.swift */,
+				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
+				D399418A22CE5B6D0068FDC8 /* Controller */,
+				D399418922CE5B680068FDC8 /* View */,
+				D399418822CE5B620068FDC8 /* Model */,
+				D399418B22CE5B7A0068FDC8 /* Ressources */,
 			);
 			path = CountOnMe;
 			sourceTree = "<group>";
@@ -94,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				D3BEC14722DF2B8300BE7802 /* ViewModel.swift */,
-				D399418922CE5B680068FDC8 /* View */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,20 +114,21 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		D399418B22CE5B7A0068FDC8 /* Supporting Files */ = {
+		D399418B22CE5B7A0068FDC8 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
 				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
-				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
+				1FA43BDE224E569A00F565CB /* Info.plist */,
 			);
-			path = "Supporting Files";
+			path = Ressources;
 			sourceTree = "<group>";
 		};
 		F6A0660022E10844001E1732 /* CountOnMeTests */ = {
 			isa = PBXGroup;
 			children = (
-				F6A0660122E10844001E1732 /* CountOnMeTests.swift */,
 				F6A0660322E10844001E1732 /* Info.plist */,
+				2FC1C02522E20D260024AC7E /* ViewModelTests.swift */,
+				2FC1C02422E20D260024AC7E /* CountOnMeTests-Bridging-Header.h */,
 			);
 			path = CountOnMeTests;
 			sourceTree = "<group>";
@@ -187,6 +186,7 @@
 					};
 					F6A065FE22E10844001E1732 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 1FA43BCE224E569900F565CB;
 					};
 				};
@@ -245,8 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6A0660A22E10858001E1732 /* ViewModelTestCase.swift in Sources */,
-				F6A0660222E10844001E1732 /* CountOnMeTests.swift in Sources */,
+				2FC1C02622E20D260024AC7E /* ViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +401,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 568UZNMWK9;
-				INFOPLIST_FILE = "$(SRCROOT)/CountOnMe/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/CountOnMe/Ressources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -420,7 +419,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 568UZNMWK9;
-				INFOPLIST_FILE = "$(SRCROOT)/CountOnMe/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/CountOnMe/Ressources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -436,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 568UZNMWK9;
 				INFOPLIST_FILE = CountOnMeTests/Info.plist;
@@ -446,6 +446,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lauriane.haydari.CountOnMeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CountOnMeTests/CountOnMeTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CountOnMe.app/CountOnMe";
@@ -456,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 568UZNMWK9;
 				INFOPLIST_FILE = CountOnMeTests/Info.plist;
@@ -466,6 +469,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lauriane.haydari.CountOnMeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CountOnMeTests/CountOnMeTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CountOnMe.app/CountOnMe";

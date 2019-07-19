@@ -52,9 +52,6 @@ class ViewController: UIViewController {
     @IBAction func tappedOperatorButtons(_ sender: UIButton) {
         let index = sender.tag
         viewModel.didSelectOperator(at: index)
-        if sender.tag == 4 {
-            viewModel.didPressEqualButton()
-        }
     }
 
     
@@ -71,7 +68,7 @@ class ViewController: UIViewController {
     private func presentAlert(with title: String, message: String) {
         alertView.title = title
         alertView.message = message
-        let okAction = UIAlertAction(title: "Zéro",
+        let okAction = UIAlertAction(title: "OK",
                                      style: .cancel,
                                      handler: nil)
         alertView.addAction(okAction)

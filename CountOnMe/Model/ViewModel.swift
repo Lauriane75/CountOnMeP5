@@ -3,7 +3,7 @@
 //  CountOnMe
 //
 //  Created by Lauriane Haydari on 17/07/2019.
-//  Copyright © 2019 Vincent Saluzzo. All rights reserved.
+//  Copyright © 2019 Lauriane Haydari. All rights reserved.
 //
 
 import Foundation
@@ -145,7 +145,10 @@ class ViewModel {
      //   } else if  {
          //   nextScreen?(.alert(title: "Zéro", message: "Un operateur est déja mis !"))
         }
-        displayedText?(stringElement)
+        if index == 4 {
+            didPressEqualButton()
+        }
+         displayedText?(stringElement)
     }
     
     // Remove Button
