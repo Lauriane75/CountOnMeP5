@@ -10,9 +10,15 @@
 import XCTest
 
 final class ViewModelTests: XCTestCase {
+    
+    var viewModel: ViewModel!
+    
+    override func setUp() {
+        super.setUp()
+        viewModel = ViewModel()
+    }
 
     func testGivenAViewModelWhenViewDidLoadThenDisplayedTextIsCorrctlyReturned() {
-        let viewModel = ViewModel()
         let expectation = self.expectation(description: "Returned text")
 
         viewModel.displayedText = { text in
@@ -26,7 +32,6 @@ final class ViewModelTests: XCTestCase {
     }
 
     func testGivenAViewModelWhenDidPressNumberButtonThenDisplayedTextIsCorrctlyReturned() {
-        let viewModel = ViewModel()
         let expectation = self.expectation(description: "Returned text")
         
         var counter = 0
@@ -44,5 +49,14 @@ final class ViewModelTests: XCTestCase {
         
         waitForExpectations(timeout: 1.0, handler: nil)
     }
+    
+    func testGiven1Addition2WhenDidPressEqualButtonThenElementAtIndex5Is3() {
+        
+        // operator is +
+        viewModel.didSelectOperator(at: 0)
+        viewModel.didPressNumberButton(with: "1")
+        
+    }
+
 
 }
