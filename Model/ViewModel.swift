@@ -9,32 +9,27 @@
 import Foundation
 
 class ViewModel {
-    
+
     // MARK: - Outputs
     
     var displayedText: ((String) -> Void)?
-    
+
     var nextScreen: ((Screen) -> Void)?
-    
+
     enum Screen {
         case alert(title: String, message: String)
     }
-
+    
     // MARK: - Private properties
     
     private var stringElement: String {
         return String(elements.joined(separator: " "))
     }
-     var elements: [String] {
+    private var elements: [String] {
         return temporaryText.split(separator: " ").map { "\($0)" }
     }
     private var temporaryText = ""
     
-    
-    // Error check computed variables
-//    private var expressionIsCorrect: Bool {
-//        return elements.last != " + " && elements.last != " - "
-//    }
     
     private var expressionHaveEnoughElement: Bool {
         return elements.count >= 4
@@ -48,63 +43,62 @@ class ViewModel {
         return elements.firstIndex(of: "=") != nil
     }
     
-
-    // MARK: - Properties
-    
-    var left: Double {
+     var left: Double {
         return Double(elements[0])!
     }
     
-    var right: Double {
+     var right: Double {
         return Double(elements[2])!
     }
-    var operand: String {
+    
+     var operand: String {
         return (elements[1])
     }
-    
+
     // MARK: - Inputs
     
-    
-    func viewDidLoad() -> Void {
+    func viewDidLoad() {
         displayedText?("1 + 2 = 3")
     }
     
     // buttons
     // Equal Button
     func didPressEqualButton() {
+        // nextScreen?(.alert(title: "OK", message: "Ajoutez un chiffre"))
         if expressionHaveEnoughElement {
-            nextScreen?(.alert(title: "Zéro", message: "Démarrez un nouveau calcul !"))
+            nextScreen?(.alert(title: "OK", message: "Démarrez un nouveau calcul !"))
             temporaryText.removeAll()
-        }
-        displayedText?("")
-        var operationsToReduce = elements
-        while operationsToReduce.count > 1 {
-            var result: Double
-            for (_, _) in operationsToReduce.enumerated() {
-                if operand == "+" {
-                    result = left + right
-                } else if operand == "-" {
-                    result = left - right
-                } else if operand == "x" {
-                    result = left * right
-                } else if operand == "/" {
-                    result = left / right
-                } else {
-                    fatalError("Unknown operator !")
+            displayedText?("")
+        } else {
+            var operationsToReduce = elements
+            while operationsToReduce.count > 1 {
+                var result: Double
+                for (_, _) in operationsToReduce.enumerated() {
+                    if operand == "+" {
+                        result = left + right
+                    } else if operand == "-" {
+                        result = left - right
+                    } else if operand == "x" {
+                        result = left * right
+                    } else if operand == "/" {
+                        result = left / right
+                    } else {
+                        fatalError("Unknown operator !")
+                    }
+                    operationsToReduce = Array(operationsToReduce.dropFirst(3))
+                    print("operationsToReduce 1 : \(operationsToReduce)")
+                    // show after index 3 so from second operand
+                    operationsToReduce.insert("\(result)", at: 0)
+                    print("operationsToReduce 2 : \(operationsToReduce)")
                 }
-                operationsToReduce = Array(operationsToReduce.dropFirst(3))
-                print("operationsToReduce 1 : \(operationsToReduce)")
-                // show after index 3 so from second operand
-                operationsToReduce.insert("\(result)", at: 0)
-                print("operationsToReduce 2 : \(operationsToReduce)")
+                temporaryText.append(" = \(operationsToReduce.first!)")
             }
-            temporaryText.append(" = \(operationsToReduce.first!)")
+            // debug
+            print("temporaryText : \(temporaryText)")
+            print("elements : \(elements)")
+            print("stringElement : \(stringElement)")
+            displayedText?(stringElement)
         }
-        // debug
-        print("temporaryText : \(temporaryText)")
-        print("elements : \(elements)")
-        print("stringElement : \(stringElement)")
-        displayedText?(stringElement)
     }
     
     // Number Buttons
@@ -117,7 +111,7 @@ class ViewModel {
     }
     
     // Operator Button
-    private var operatorsArray: [String] = [" + ", " - ", " x ", " / "]
+    private var operatorsArray: [String] = [" + ", " - ", " x ", " / ", " = "]
     
     func didSelectOperator(at index: Int) {
         if canAddOperator {
@@ -126,14 +120,16 @@ class ViewModel {
             }
             temporaryText.append(operatorsArray[index])
             print(operatorsArray[index])
+     //   } else if  {
+         //   nextScreen?(.alert(title: "Zéro", message: "Un operateur est déja mis !"))
         }
         displayedText?(stringElement)
     }
     
     // Remove Button
-    func didPressRemoveButton() {
-        if temporaryText.last != nil {
-            temporaryText.removeAll()
+    func didPressClear() {
+         if temporaryText.last != nil {
+             temporaryText.removeAll()
         }
         displayedText?("")
     }

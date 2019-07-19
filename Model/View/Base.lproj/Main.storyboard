@@ -276,7 +276,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedRemoveButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="zSM-QO-M5W"/>
+                                            <action selector="didPressClear:" destination="eqK-jh-KKu" eventType="touchUpInside" id="zSM-QO-M5W"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMj-Of-bCU">
@@ -287,7 +287,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedOperatorButtons:" destination="eqK-jh-KKu" eventType="touchUpInside" id="nxw-gp-sr1"/>
+                                            <action selector="tappedOperatorButtons:" destination="eqK-jh-KKu" eventType="touchUpInside" id="snC-Hi-aGW"/>
                                         </connections>
                                     </button>
                                 </subviews>

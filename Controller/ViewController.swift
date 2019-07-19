@@ -9,16 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     // MARK: - Outlets
+
     @IBOutlet weak var screenTextView: UITextView!
     
     // MARK: - Properties
-    private let viewModel = ViewModel()
     
+    private let viewModel = ViewModel()
+
     private lazy var alertView = UIAlertController()
     
-    // MARK: - View Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         bind(to: viewModel)
@@ -29,7 +31,7 @@ class ViewController: UIViewController {
         viewModel.displayedText = { [weak self] text in
             self?.screenTextView.text = text
         }
-        
+
         viewModel.nextScreen = { [weak self] screen in
             DispatchQueue.main.async {
                 if case .alert(title: let title, message: let message) = screen {
@@ -39,7 +41,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - View actions
+    // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
@@ -55,24 +57,25 @@ class ViewController: UIViewController {
         }
     }
 
+    
     @IBAction func tappedReturnButton(_ sender: Any) {
         viewModel.didPressReturnButton()
     }
     
-    @IBAction func tappedRemoveButton(_ sender: Any) {
-        viewModel.didPressRemoveButton()
+    @IBAction func didPressClear(_ sender: Any) {
+        viewModel.didPressClear()
     }
-    
+
     // MARK: - Alert
-    
+
     private func presentAlert(with title: String, message: String) {
         alertView.title = title
         alertView.message = message
-        let okAction = UIAlertAction(title: "OK",
+        let okAction = UIAlertAction(title: "Zéro",
                                      style: .cancel,
                                      handler: nil)
         alertView.addAction(okAction)
         self.present(alertView, animated: true, completion: nil)
     }
-} // end
+}
 
