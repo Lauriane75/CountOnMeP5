@@ -1,30 +1,37 @@
 //
-//  SimpleCalcUITests.swift
-//  SimpleCalcUITests
+//  ViewModelTestCase.swift
+//  CountOnMeTests
 //
-//  Created by Vincent Saluzzo on 29/03/2019.
+//  Created by Lauriane Haydari on 19/07/2019.
 //  Copyright © 2019 Vincent Saluzzo. All rights reserved.
 //
 
+
 import XCTest
+
 
 @testable import CountOnMe
 
+
 class ViewModelTestCase: XCTestCase {
     
-     var viewModel: ViewModel!
+    var viewModel: ViewModel!
     
     override func setUp() {
         super.setUp()
         viewModel = ViewModel()
     }
-//
-//    func testGivenLeftIs1AndRightIs2_WhenOperandIsPlus_ThenResultIs3() {
-//        //        viewModel.displayedText
-//        //        viewModel.right = 2
-//        //        viewModel.operand = " + "
-//        //
-//        //
-//        //        XCTAssertTrue(viewModel.result = "3")
-//    }
+    
+    func testGivenLeftIs1AndRightIs2_WhenOperandIsPlus_ThenResultIs3() {
+        
+        
+      //  viewModel.left = 1
+      //  viewModel.elements.first = "1"
+        
+        
+        
+    }
+    
+    
+    
 }
