@@ -11,131 +11,63 @@ import UIKit
 class ViewController: UIViewController {
     // outlet
     @IBOutlet weak var screenView: UITextView!
-    @IBOutlet var numberButtons: [UIButton]!
-    @IBOutlet var operatorButtons: [UIButton]!
-    // properties
-    var elements: [String] {
-        return screenView.text.split(separator: " ").map { "\($0)" }
-    }
     
- //   var arrayOfElement = [""]
+    // MARK: - Properties
+    private let viewModel = ViewModel()
+
     
-    // Error check computed variables
-    var expressionIsCorrect: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "*"
-    }
-    
-    var expressionHaveEnoughElement: Bool {
-        return elements.count >= 3
-    }
-    
-    var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "*"
-    }
-    
-    var expressionHaveResult: Bool {
-        return screenView.text.firstIndex(of: "=") != nil
-    }
-    
-    // View Life cycles
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-    //    arrayOfElement = setElement() as! [String]
+        bind(to: viewModel)
+        viewModel.viewDidLoad()
     }
-    // func
-    // return array of elements split
-//    func setElement() -> [String?] {
-//        return elements
-//    }
+    
+    private func bind(to viewModel: ViewModel) {
+        viewModel.displayedText = { text in
+            self.screenView.text = text
+        }
+    }
     
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
         }
-        
-        if expressionHaveResult {
-            screenView.text = ""
-        }
-        
-        screenView.text.append(numberText)
+        viewModel.didPressNumberButton(with: numberText)
     }
     
-    @IBAction func tappedOperatorButtons(_ sender: Any) {
-        guard let operatorText = (sender as AnyObject).title(for: .normal) else {
-            return
-        }
-        if canAddOperator {
-            screenView.text.append(operatorText)
-        } else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
-        }
-    }
-    
-    
-    @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        if canAddOperator {
-            screenView.text.append(" + ")
-        } else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        if canAddOperator {
-            screenView.text.append(" - ")
-        } else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
-        }
+    @IBAction func tappedOperatorButtons(_ sender: UIButton) {
+        let index = sender.tag
+        viewModel.didSelectOperator(at: index)
+        //        } else {
+        //            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
+        //            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        //            self.present(alertVC, animated: true, completion: nil)
+        //        }
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        guard expressionIsCorrect else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
-        }
-        
-        guard expressionHaveEnoughElement else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
-        }
-        
-        // Create local copy of operations
-        var operationsToReduce = elements
-        
-        // Iterate over operations while an operand still here
-        while operationsToReduce.count > 1 {
-            let left = Int(operationsToReduce[0])!
-            let operand = operationsToReduce[1]
-            let right = Int(operationsToReduce[2])!
-            
-            let result: Int
-            switch operand {
-            case "+": result = left + right
-            case "-": result = left - right
-            default: fatalError("Unknown operator !")
-            }
-            
-            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result)", at: 0)
-        }
-        
-        screenView.text.append(" = \(operationsToReduce.first!)")
+        viewModel.didPressEqualButton()
+        //        guard viewModel.expressionIsCorrect else {
+        //            let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
+        //            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        //            return self.present(alertVC, animated: true, completion: nil)
+        //        }
+        //
+        //        guard viewModel.expressionHaveEnoughElement else {
+        //            let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
+        //            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        //            return self.present(alertVC, animated: true, completion: nil)
+        //        }
+        //
     }
     @IBAction func tappedReturnButton(_ sender: Any) {
-       screenView.text.removeLast()
+        viewModel.didPressReturnButton()
     }
     
     @IBAction func tappedRemoveButton(_ sender: Any) {
-    screenView.text.removeAll()
+        viewModel.didPressRemoveButton()
     }
 } // end
 
