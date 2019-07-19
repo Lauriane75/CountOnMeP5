@@ -32,7 +32,7 @@ class ViewModel {
     
     
     private var expressionHaveEnoughElement: Bool {
-        return elements.count >= 4
+        return elements.count > 4
     }
     
     private var canAddOperator: Bool {
@@ -42,6 +42,8 @@ class ViewModel {
     private var expressionHaveResult: Bool {
         return elements.firstIndex(of: "=") != nil
     }
+    
+    // MARK: - Properties
     
      var left: Double {
         return Double(elements[0])!
@@ -54,8 +56,21 @@ class ViewModel {
      var operand: String {
         return (elements[1])
     }
+    
+    enum OperatorCase {
+        case addition, substraction, multiplication, division
+    }
+    
+    var selectOperator: OperatorCase = .addition {
+        didSet {
+        }
+    }
+    
+    var timesEqualButtonTapped = [Int]()
+
 
     // MARK: - Inputs
+    
     
     func viewDidLoad() {
         displayedText?("1 + 2 = 3")
@@ -75,12 +90,16 @@ class ViewModel {
                 var result: Double
                 for (_, _) in operationsToReduce.enumerated() {
                     if operand == "+" {
+                        selectOperator = .addition
                         result = left + right
                     } else if operand == "-" {
+                        selectOperator = .substraction
                         result = left - right
                     } else if operand == "x" {
+                         selectOperator = .multiplication
                         result = left * right
                     } else if operand == "/" {
+                         selectOperator = .division
                         result = left / right
                     } else {
                         fatalError("Unknown operator !")
@@ -91,7 +110,10 @@ class ViewModel {
                     operationsToReduce.insert("\(result)", at: 0)
                     print("operationsToReduce 2 : \(operationsToReduce)")
                 }
-                temporaryText.append(" = \(operationsToReduce.first!)")
+                temporaryText.append("\(operationsToReduce.first!)")
+            }
+            if timesEqualButtonTapped.count > 1 {
+                print ("recalcule")
             }
             // debug
             print("temporaryText : \(temporaryText)")
