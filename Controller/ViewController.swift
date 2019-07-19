@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     @IBAction func tappedOperatorButtons(_ sender: UIButton) {
         let index = sender.tag
         viewModel.didSelectOperator(at: index)
-        if sender.tag == 5 {
+        if sender.tag == 4 {
             viewModel.didPressEqualButton()
         }
     }
