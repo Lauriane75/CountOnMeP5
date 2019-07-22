@@ -35,16 +35,12 @@ class ViewModel {
         return elements.count > 4
     }
     
-    private var canAddOperator: Bool {
+    private var lastElementIsNotAnOperator: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
     
-    private var lastElementIsOperator: Bool {
-        return elements.last == ("+") || elements.last == ("-") || elements.last == ("x") || elements.last == ("/")
-    }
-    
-    private var firstElementIsOperator: Bool {
-        return elements.first == ("+") || elements.first == ("-") || elements.first == ("x") || elements.first == ("/") || elements.first == ("=")
+    private var firstElementIsAnOperator: Bool {
+        return elements.first == "+" || elements.first == "-" || elements.first == "x" || elements.first == "/"
     }
     
     private var expressionHaveResult: Bool {
@@ -90,24 +86,28 @@ class ViewModel {
     // buttons
     // Equal Button
     fileprivate func startANewCalcul() {
-        temporaryText.removeAll()
+        if temporaryText.last != nil {
+            temporaryText.removeAll()
+        }
         displayedText?("")
-        timesEqualButtonTapped.removeAll()
     }
     
     func didPressEqualButton() {
         timesEqualButtonTapped.append(+1)
+        var operationsToReduce = elements
+        if operationsToReduce.count < 3 {
+             nextScreen?(.alert(title: "OK", message: "Entrez un calcul correcte"))
+            displayedText?(stringElement)
+        }
         if timesEqualButtonTapped.count > 1 {
             nextScreen?(.alert(title: "OK", message: "Vous avez déjà fait une opération. Démarrez un nouveau calcul !"))
-            startANewCalcul()
+        startANewCalcul()
         } else if expressionHaveEnoughElement {
             timesEqualButtonTapped.removeAll()
             nextScreen?(.alert(title: "OK", message: "Démarrez un nouveau calcul !"))
-            startANewCalcul()
+         startANewCalcul()
         } else {
-            var operationsToReduce = elements
             while operationsToReduce.count > 1 {
-                for (_, _) in operationsToReduce.enumerated() {
                     if operand == "+" {
                         selectOperator = .addition
                         result = left + right
@@ -121,23 +121,24 @@ class ViewModel {
                          selectOperator = .division
                         result = left / right
                     } else {
-                        fatalError("Unknown operator !")
+                        nextScreen?(.alert(title: "OK", message: "Entrez un calcul correcte"))
+                         startANewCalcul()
                     }
-                        operationsToReduce = Array(operationsToReduce.dropFirst(3))
-                        print("operationsToReduce 1 : \(operationsToReduce)")
-                        // show after index 3 so from second operand
-                        operationsToReduce.insert("\(result)", at: 0)
-                        print("operationsToReduce 2 : \(operationsToReduce)")
-                    }
-                temporaryText.append("\(operationsToReduce.first!)")
-                    // debug
-                    print("temporaryText : \(temporaryText)")
-                    print("elements : \(elements)")
-                    print("stringElement : \(stringElement)")
-                    displayedText?(stringElement)
+                operationsToReduce = Array(operationsToReduce.dropFirst(3))
+                print("operationsToReduce 1 : \(operationsToReduce)")
+                // show after index 3 so from second operand
+                operationsToReduce.insert("\(result)", at: 0)
+                print("operationsToReduce 2 : \(operationsToReduce)")
+                }
+            temporaryText.append("\(operationsToReduce.first!)")
+            // debug
+            print("temporaryText : \(temporaryText)")
+            print("elements : \(elements)")
+            print("stringElement : \(stringElement)")
+            displayedText?(stringElement)
             }
+        timesEqualButtonTapped.removeAll()
         }
-    }
     
     // Number Buttons
     func didPressNumberButton(with numberText: String) {
@@ -152,30 +153,19 @@ class ViewModel {
     // Operator Button
     private var operatorsArray: [String] = [" + ", " - ", " x ", " / ", " = "]
     
-    fileprivate func removeLastElement() {
-        for _ in 0...2 {
-            temporaryText.removeLast()
-        }
-    }
-    
     func didSelectOperator(at index: Int) {
-        if lastElementIsOperator {
-            nextScreen?(.alert(title: "OK", message: "Ajouter un chiffre"))
-            removeLastElement()
-        }
-        if canAddOperator {
+        if lastElementIsNotAnOperator {
             guard index < operatorsArray.count else {
                 return
             }
             temporaryText.append(operatorsArray[index])
             print(operatorsArray[index])
+        } else if firstElementIsAnOperator == true {
+            nextScreen?(.alert(title: "OK", message: "Ajouter un chiffre"))
+        //    temporaryText.removeAll()
         }
         if index == 4 {
             didPressEqualButton()
-        }
-        else if firstElementIsOperator {
-            nextScreen?(.alert(title: "OK", message: "Commencer par un chiffre"))
-            temporaryText.removeAll()
         }
          displayedText?(stringElement)
     }
