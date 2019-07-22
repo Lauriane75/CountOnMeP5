@@ -28,12 +28,11 @@
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       systemAttachmentLifetime = "keepNever"
       codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F6A065FE22E10844001E1732"
+            BlueprintIdentifier = "D3D102AB22E60D500036517C"
             BuildableName = "CountOnMeTests.xctest"
             BlueprintName = "CountOnMeTests"
             ReferencedContainer = "container:CountOnMe.xcodeproj">
@@ -44,7 +43,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F6A065FE22E10844001E1732"
+               BlueprintIdentifier = "D3D102AB22E60D500036517C"
                BuildableName = "CountOnMeTests.xctest"
                BlueprintName = "CountOnMeTests"
                ReferencedContainer = "container:CountOnMe.xcodeproj">
