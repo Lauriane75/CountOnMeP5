@@ -15,56 +15,47 @@ class ViewModel {
     var displayedText: ((String) -> Void)?
 
     var nextScreen: ((Screen) -> Void)?
-
-    enum Screen {
-        case alert(title: String, message: String)
-    }
-    
-    // MARK: - Private properties
-    
-    private var stringElement: String {
-        return String(elements.joined(separator: " "))
-    }
-    private var elements: [String] {
-        return temporaryText.split(separator: " ").map { "\($0)" }
-    }
-    private var temporaryText = ""
-    
-    
-    private var expressionHaveEnoughElement: Bool {
-        return elements.count > 4
-    }
-    
-    private var lastElementIsNotAnOperator: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
-    }
-    
-    private var firstElementIsAnOperator: Bool {
-        return elements.first == "+" || elements.first == "-" || elements.first == "x" || elements.first == "/"
-    }
-    
-    private var expressionHaveResult: Bool {
-        return elements.firstIndex(of: "=") != nil
-    }
     
     // MARK: - Properties
     
-     var left: Double {
+    var stringElement: String {
+        return String(elements.joined(separator: " "))
+    }
+    
+    var elements: [String] {
+        return temporaryText.split(separator: " ").map { "\($0)" }
+    }
+    
+    var temporaryText = ""
+    
+    var expressionHaveEnoughElement: Bool {
+        return elements.count > 4
+    }
+    
+    var lastElementIsNotAnOperator: Bool {
+        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
+    }
+    
+    var firstElementIsAnOperator: Bool {
+        return elements.first == "+" || elements.first == "-" || elements.first == "x" || elements.first == "/"
+    }
+    
+    var expressionHaveResult: Bool {
+        return elements.firstIndex(of: "=") != nil
+    }
+    
+    var left: Double {
         return Double(elements[0])!
     }
     
-     var right: Double {
+    var right: Double {
         return Double(elements[2])!
     }
     
     var result: Double = 0
     
-     var operand: String {
+    var operand: String {
         return (elements[1])
-    }
-    
-    enum OperatorCase {
-        case addition, substraction, multiplication, division
     }
     
     var selectOperator: OperatorCase = .addition {
@@ -73,14 +64,13 @@ class ViewModel {
     }
     
     var timesEqualButtonTapped = [Int]()
-    var timesOperatorButtonTapped = [Int]()
-
+//    var timesOperatorButtonTapped = [Int]()
+    
 
     // MARK: - Inputs
-    
-    
     func viewDidLoad() {
         displayedText?("1 + 2 = 3")
+    //    Alert.init(type: .operationError)
     }
     
     // buttons
@@ -160,7 +150,7 @@ class ViewModel {
             }
             temporaryText.append(operatorsArray[index])
             print(operatorsArray[index])
-        } else if firstElementIsAnOperator == true {
+        } else if firstElementIsAnOperator {
             nextScreen?(.alert(title: "OK", message: "Ajouter un chiffre"))
         //    temporaryText.removeAll()
         }
