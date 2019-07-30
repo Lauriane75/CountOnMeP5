@@ -9,16 +9,14 @@
 import Foundation
 import UIKit
 
-enum Screen {
-    case alert(title: String, message: String)
-}
+
 
 final class ScreenView {
     
-      private lazy var alertView = UIAlertController()
-    
+    private lazy var alertView = UIAlertController()
+
     // MARK: - Alert
-    
+
     private func presentAlert(with title: String, message: String) {
         alertView.title = title
         alertView.message = message

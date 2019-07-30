@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let viewModel = ViewModel()
+    private let viewModel = CalculatorViewModel()
 
     private lazy var alertView = UIAlertController()
     
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         viewModel.viewDidLoad()
     }
     
-    private func bind(to viewModel: ViewModel) {
+    private func bind(to viewModel: CalculatorViewModel) {
         viewModel.displayedText = { [weak self] text in
             self?.screenTextView.text = text
         }
@@ -43,26 +43,29 @@ class ViewController: UIViewController {
     
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
-        guard let numberText = sender.title(for: .normal) else {
+        guard let operandText = sender.title(for: .normal) else {
             return
         }
-        viewModel.didPressNumberButton(with: numberText)
+            viewModel.didPressOperand(operand: Int(operandText)!)
+       
     }
     
     @IBAction func tappedOperatorButtons(_ sender: UIButton) {
-        let index = sender.tag
-        viewModel.didSelectOperator(at: index)
+            viewModel.didPressOperator(at: sender.tag)
     }
 
-    
-    @IBAction func tappedReturnButton(_ sender: Any) {
-        viewModel.didPressReturnButton()
+    @IBAction func tappedDeleteButton(_ sender: Any) {
+        viewModel.didPressDelete()
     }
     
     @IBAction func didPressClear(_ sender: Any) {
         viewModel.didPressClear()
     }
 
+    @IBAction func tappedEqualButton(_ sender: UIButton) {
+            viewModel.didPressEqualButton(at: sender.tag)
+    }
+    
     // MARK: - Alert
 
     private func presentAlert(with title: String, message: String) {
@@ -74,5 +77,7 @@ class ViewController: UIViewController {
         alertView.addAction(okAction)
         self.present(alertView, animated: true, completion: nil)
     }
+    
+   
 }
 
