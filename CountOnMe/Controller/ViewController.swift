@@ -43,15 +43,15 @@ class ViewController: UIViewController {
     }
     
     // View actions
-    @IBAction func tappedNumberButton(_ sender: UIButton) {
+    @IBAction func tappedOperandsButton(_ sender: UIButton) {
         guard let operandText = sender.title(for: .normal) else {
             return
         }
-        viewModel.didPressOperand(operand: Int(operandText)!)
+        viewModel.didPressOperand(operand: operandText)
        
     }
     
-    @IBAction func tappedOperatorButtons(_ sender: UIButton) {
+    @IBAction func tappedOperatorButton(_ sender: UIButton) {
         viewModel.didPressOperator(at: sender.tag)
     }
 
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         viewModel.didPressDelete()
     }
     
-    @IBAction func didPressClear(_ sender: Any) {
+    @IBAction func TappedClearButton(_ sender: Any) {
         viewModel.didPressClear()
     }
 

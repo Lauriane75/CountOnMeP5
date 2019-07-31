@@ -25,7 +25,7 @@ class CalculatorViewModel {
         displayedText?("1+2=3")
     }
     
-    func didPressOperand(operand: Int) {
+    func didPressOperand(operand: String) {
         if let number = operandsString.last {
             var stringNumber = number
             stringNumber += "\(operand)"

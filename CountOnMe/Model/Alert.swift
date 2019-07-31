@@ -15,7 +15,7 @@ final class Alert {
     // MARK: - Alert
 
      func presentAlert(on vcl: UIViewController, with title: String, message: String) {
-        let alertView = UIAlertController(title: title ,message: message, preferredStyle: .alert)
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertView.addAction(okAction)
         vcl.present(alertView, animated: true, completion: nil)
