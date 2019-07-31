@@ -140,7 +140,10 @@ class CalculatorViewModel {
     
     fileprivate func getResult() -> String {
         getCalculPriorities()
-        let total = String(calcul())
+        let numberformatter = NumberFormatter()
+        numberformatter.minimumFractionDigits = 0
+        numberformatter.maximumFractionDigits = 3
+        guard let total = numberformatter.string(from: NSNumber(value: calcul())) else { return "" }
         return total
     }
     
