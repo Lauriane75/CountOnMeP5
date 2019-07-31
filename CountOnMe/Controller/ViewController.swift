@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel = CalculatorViewModel()
+    let alert = Alert()
 
     private lazy var alertView = UIAlertController()
     
@@ -35,7 +36,7 @@ class ViewController: UIViewController {
         viewModel.nextScreen = { [weak self] screen in
             DispatchQueue.main.async {
                 if case .alert(title: let title, message: let message) = screen {
-                    self?.presentAlert(with: title, message: message)
+                    self!.alert.presentAlert(on: self!, with: title, message: message)
                 }
             }
         }
@@ -46,12 +47,12 @@ class ViewController: UIViewController {
         guard let operandText = sender.title(for: .normal) else {
             return
         }
-            viewModel.didPressOperand(operand: Int(operandText)!)
+        viewModel.didPressOperand(operand: Int(operandText)!)
        
     }
     
     @IBAction func tappedOperatorButtons(_ sender: UIButton) {
-            viewModel.didPressOperator(at: sender.tag)
+        viewModel.didPressOperator(at: sender.tag)
     }
 
     @IBAction func tappedDeleteButton(_ sender: Any) {
@@ -63,21 +64,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-            viewModel.didPressEqualButton(at: sender.tag)
+        viewModel.didPressEqualButton(at: sender.tag)
     }
-    
-    // MARK: - Alert
-
-    private func presentAlert(with title: String, message: String) {
-        alertView.title = title
-        alertView.message = message
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .cancel,
-                                     handler: nil)
-        alertView.addAction(okAction)
-        self.present(alertView, animated: true, completion: nil)
-    }
-    
    
 }
 

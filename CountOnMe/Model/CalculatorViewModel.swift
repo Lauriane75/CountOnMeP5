@@ -20,12 +20,57 @@ class CalculatorViewModel {
     
     var nextScreen: ((NextScreen) -> Void)?
     
+    // MARK: - Inputs
+    func viewDidLoad() {
+        displayedText?("1+2=3")
+    }
+    
+    func didPressOperand(operand: Int) {
+        if let number = operandsString.last {
+            var stringNumber = number
+            stringNumber += "\(operand)"
+            operandsString[operandsString.count-1] = stringNumber
+            checkZeroDivision()
+            checkEqualButtonTapped()
+            getText()
+            displayedText?(temporaryText)
+        }
+    }
+    
+    func didPressOperator(at index: Int) {
+        guard index < operatorCases.count else {
+            return
+        }
+        let stringOperator = operatorCases[index]
+        operatorsString.append(stringOperator)
+        operandsString.append("")
+        checkEqualButtonTapped()
+        getText()
+        checkOperandBegin()
+        displayedText?(temporaryText)
+    }
+    
+    func didPressEqualButton(at tag: Int) {
+        if tag == 4 {
+            temporaryText.append("=\(getResult())")
+            displayedText?(temporaryText)
+            timesEqualButtonTapped = true
+        }
+    }
+    
+    func didPressClear() {
+        clear()
+    }
+    
+    func didPressDelete() {
+        clearLast()
+    }
+    
     // MARK: Private properties
     
     private var operandsString: [String] = [String()]
     // start always positive
     private var operatorsString: [String] = ["+"]
-    
     
     private let operatorCases = ["+",
                                  "-",
@@ -37,7 +82,7 @@ class CalculatorViewModel {
     private var timesEqualButtonTapped = false
     private var timesOperatorButtonTapped = [Int]()
     
-     // MARK: - Private Functions
+    // MARK: - Private Functions
     
     var temporaryText = ""
     
@@ -66,7 +111,7 @@ class CalculatorViewModel {
                 }
                 print ("operators : \(operatorS)")
                 operatorS.remove(at: indexOperator)
-            
+                
                 operanDs[indexOperator - 1] = "\(total)"
                 operanDs.remove(at: indexOperator)
                 operandsString = operanDs
@@ -108,8 +153,8 @@ class CalculatorViewModel {
     
     fileprivate func clearLast() {
         if temporaryText != "" {
-        temporaryText.removeLast()
-        displayedText?(temporaryText)
+            temporaryText.removeLast()
+            displayedText?(temporaryText)
         }
     }
     
@@ -118,83 +163,35 @@ class CalculatorViewModel {
         operandsString =  [String()]
     }
     
-     // MARK: - Alerts
-    func checkZeroDivision() {
+    // MARK: - Alerts
+   fileprivate func checkZeroDivision() {
         if let operands = operandsString.last {
             if operands == "0" && operatorsString.last == "/" {
                 nextScreen?(.alert(title: "Alert", message: "Division par zéro impossible"))
-                resetArrays()
+                clear()
             }
         }
     }
     
-    
-    func checkOperandBegin() {
+    fileprivate func checkOperandBegin() {
         if let operands = operandsString.last {
             if operands.isEmpty {
                 if let tempText = temporaryText.first {
-                if tempText == "+" || tempText == "-" || tempText == "x" || tempText == "/" {
-                    nextScreen?(.alert(title: "Alert", message: "Entrez un chiffre!"))
-                    clear()
+                    if tempText == "+" || tempText == "-" || tempText == "x" || tempText == "/" {
+                        nextScreen?(.alert(title: "Alert", message: "Entrez un chiffre!"))
+                        clear()
                     }
                 }
             }
         }
     }
     
-    func checkEqualButtonTapped() {
-            if temporaryText.contains("=") {
-                    nextScreen?(.alert(title: "Alert", message: "Entrez une expression correcte!"))
-                    clear()
+    fileprivate func checkEqualButtonTapped() {
+        if temporaryText.contains("=") {
+            nextScreen?(.alert(title: "Alert", message: "Entrez une expression correcte!"))
+            clear()
         }
     }
-         
-    // MARK: - Inputs
-    func viewDidLoad() {
-       displayedText?("1+2=3")
-    }
-    
-    func didPressOperand(operand: Int) {
-        if let number = operandsString.last {
-            var stringNumber = number
-            stringNumber += "\(operand)"
-            operandsString[operandsString.count-1] = stringNumber
-            checkZeroDivision()
-            checkEqualButtonTapped()
-            getText()
-            displayedText?(temporaryText)
-        }
-    }
-    
-    func didPressOperator(at index: Int) {
-        guard index < operatorCases.count else {
-            return
-        }
-        let stringOperator = operatorCases[index]
-        operatorsString.append(stringOperator)
-        operandsString.append("")
-        checkEqualButtonTapped()
-        getText()
-        checkOperandBegin()
-        displayedText?(temporaryText)
-    }
-    
-    func didPressEqualButton(at tag: Int) {
-        if tag == 4 {
-            temporaryText.append("=\(getResult())")
-            displayedText?(temporaryText)
-            timesEqualButtonTapped = true
-        }
-    }
-
-    func didPressClear() {
-        clear()
-    }
-
-    func didPressDelete() {
-        clearLast()
-    }
-
 }
 
 
