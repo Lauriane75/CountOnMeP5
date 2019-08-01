@@ -287,7 +287,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="TappedClearButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="zSM-QO-M5W"/>
+                                            <action selector="tappedClearButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="zSM-QO-M5W"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMj-Of-bCU">

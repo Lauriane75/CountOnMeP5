@@ -19,7 +19,7 @@ final class ViewModelTests: XCTestCase {
         viewModel = CalculatorViewModel()
     }
     
-    // viewModel.viewDidLoad() => displayedText("1 + 2 = 3")
+    // viewModel.viewDidLoad() => displayedText("1+2=3")
     func testGivenAViewModelWhenViewDidLoadThenDisplayedTextIsCorrctlyReturned() {
         let expectation = self.expectation(description: "Returned text")
         viewModel.displayedText = { text in
@@ -36,15 +36,15 @@ final class ViewModelTests: XCTestCase {
         var counter = 0
         viewModel.displayedText = { text in
             if counter == 4 {
-                XCTAssertEqual(text, "2-1=1.0")
+                XCTAssertEqual(text, "2-1=1")
                 expectation.fulfill()
             }
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 1)
-        viewModel.didPressOperand(operand: 1)
+        viewModel.didPressOperand(operand: "1")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -57,15 +57,15 @@ final class ViewModelTests: XCTestCase {
         var counter = 0
         viewModel.displayedText = { text in
             if counter == 4 {
-                XCTAssertEqual(text, "2x3=6.0")
+                XCTAssertEqual(text, "2x3=6")
                 expectation.fulfill()
             }
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 2)
-        viewModel.didPressOperand(operand: 3)
+        viewModel.didPressOperand(operand: "3")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -78,17 +78,17 @@ final class ViewModelTests: XCTestCase {
         var counter = 0
         viewModel.displayedText = { text in
             if counter == 6 {
-                XCTAssertEqual(text, "4+2+9=15.0")
+                XCTAssertEqual(text, "4+2+9=15")
                 expectation.fulfill()
             }
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 4)
+        viewModel.didPressOperand(operand: "4")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 9)
+        viewModel.didPressOperand(operand: "9")
         viewModel.didPressEqualButton(at: 4)
         
         waitForExpectations(timeout: 1.0, handler: nil)
@@ -100,15 +100,15 @@ final class ViewModelTests: XCTestCase {
         var counter = 0
         viewModel.displayedText = { text in
             if counter == 4 {
-                XCTAssertEqual(text, "4/2=2.0")
+                XCTAssertEqual(text, "4/2=2")
                 expectation.fulfill()
             }
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 4)
+        viewModel.didPressOperand(operand: "4")
         viewModel.didPressOperator(at: 3)
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -121,15 +121,15 @@ final class ViewModelTests: XCTestCase {
         var counter = 0
         viewModel.displayedText = { text in
             if counter == 4 {
-                XCTAssertEqual(text, "2+3=5.0")
+                XCTAssertEqual(text, "2+3=5")
                 expectation.fulfill()
             }
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 3)
+        viewModel.didPressOperand(operand: "3")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -144,19 +144,19 @@ final class ViewModelTests: XCTestCase {
         var counter = 0
         viewModel.displayedText = { text in
             if counter == 8 {
-                XCTAssertEqual(text, "2+4-1+8=13.0")
+                XCTAssertEqual(text, "2+4-1+8=13")
                 expectation.fulfill()
             }
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 4)
+        viewModel.didPressOperand(operand: "4")
         viewModel.didPressOperator(at: 1)
-        viewModel.didPressOperand(operand: 1)
+        viewModel.didPressOperand(operand: "1")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 8)
+        viewModel.didPressOperand(operand: "8")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -170,17 +170,17 @@ final class ViewModelTests: XCTestCase {
         var counter = 0
         viewModel.displayedText = { text in
             if counter == 6 {
-                XCTAssertEqual(text, "2x4+1=9.0")
+                XCTAssertEqual(text, "2x4+1=9")
                 expectation.fulfill()
             }
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 2)
-        viewModel.didPressOperand(operand: 4)
+        viewModel.didPressOperand(operand: "4")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 1)
+        viewModel.didPressOperand(operand: "1")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -194,17 +194,17 @@ final class ViewModelTests: XCTestCase {
         var counter = 0
         viewModel.displayedText = { text in
             if counter == 6 {
-                XCTAssertEqual(text, "2x4-1=7.0")
+                XCTAssertEqual(text, "2x4-1=7")
                 expectation.fulfill()
             }
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 2)
-        viewModel.didPressOperand(operand: 4)
+        viewModel.didPressOperand(operand: "4")
         viewModel.didPressOperator(at: 1)
-        viewModel.didPressOperand(operand: 1)
+        viewModel.didPressOperand(operand: "1")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -225,13 +225,13 @@ final class ViewModelTests: XCTestCase {
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 2)
-        viewModel.didPressOperand(operand: 4)
+        viewModel.didPressOperand(operand: "4")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 1)
+        viewModel.didPressOperand(operand: "1")
         viewModel.didPressOperator(at: 3)
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -252,13 +252,13 @@ final class ViewModelTests: XCTestCase {
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 2)
-        viewModel.didPressOperand(operand: 4)
+        viewModel.didPressOperand(operand: "4")
         viewModel.didPressOperator(at: 1)
-        viewModel.didPressOperand(operand: 1)
+        viewModel.didPressOperand(operand: "1")
         viewModel.didPressOperator(at: 3)
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         
         viewModel.didPressEqualButton(at: 4)
         
@@ -278,9 +278,9 @@ final class ViewModelTests: XCTestCase {
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 5)
+        viewModel.didPressOperand(operand: "5")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         
         viewModel.didPressClear()
         
@@ -302,9 +302,9 @@ final class ViewModelTests: XCTestCase {
             counter += 1
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 5)
+        viewModel.didPressOperand(operand: "5")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         
         viewModel.didPressDelete()
         
@@ -319,9 +319,9 @@ final class ViewModelTests: XCTestCase {
             expectation.fulfill()
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 3)
+        viewModel.didPressOperand(operand: "3")
         viewModel.didPressOperator(at: 3)
-        viewModel.didPressOperand(operand: 0)
+        viewModel.didPressOperand(operand: "0")
         viewModel.didPressEqualButton(at: 4)
         waitForExpectations(timeout: 1.0, handler: nil)
     }
@@ -334,11 +334,12 @@ final class ViewModelTests: XCTestCase {
             expectation.fulfill()
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 3)
+        viewModel.didPressOperand(operand: "3")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 2)
+        viewModel.didPressOperand(operand: "2")
         viewModel.didPressOperator(at: 3)
-        viewModel.didPressOperand(operand: 0)
+        viewModel.didPressOperand(operand: "0")
+
         waitForExpectations(timeout: 1.0, handler: nil)
     }
     
@@ -362,11 +363,35 @@ final class ViewModelTests: XCTestCase {
             expectation.fulfill()
         }
         viewModel.viewDidLoad()
-        viewModel.didPressOperand(operand: 3)
+        viewModel.didPressOperand(operand: "3")
         viewModel.didPressOperator(at: 0)
-        viewModel.didPressOperand(operand: 3)
+        viewModel.didPressOperand(operand: "3")
         viewModel.didPressEqualButton(at: 4)
-        viewModel.didPressOperand(operand: 1)
+        viewModel.didPressOperand(operand: "1")
+
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    func testGivenACalculatorViewModelWhenDidPressOperatorWithABadIndexThenNothingIsReturned() {
+
+        let expectation = self.expectation(description: "Returned alert")
+        expectation.isInverted = true
+
+        var counter = 0
+        viewModel.displayedText = { _ in
+            if counter == 2 {
+                XCTFail()
+                expectation.fulfill()
+            }
+            counter += 1
+        }
+
+        viewModel.viewDidLoad()
+
+        viewModel.didPressOperand(operand: "1")
+
+        viewModel.didPressOperator(at: 100000000000)
+
         waitForExpectations(timeout: 1.0, handler: nil)
     }
     

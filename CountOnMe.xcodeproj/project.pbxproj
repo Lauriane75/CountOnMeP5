@@ -12,7 +12,7 @@
 		1FA43BD8224E569900F565CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD6224E569900F565CB /* Main.storyboard */; };
 		1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD9224E569A00F565CB /* Assets.xcassets */; };
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
-		D3A5414C22E72D1B00F46876 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A5414B22E72D1B00F46876 /* Alert.swift */; };
+		D3A5414C22E72D1B00F46876 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A5414B22E72D1B00F46876 /* AlertPresenter.swift */; };
 		D3BEC14822DF2B8300BE7802 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEC14722DF2B8300BE7802 /* CalculatorViewModel.swift */; };
 		D3D102AF22E60D500036517C /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D102AE22E60D500036517C /* CountOnMeTests.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,7 @@
 		1FA43BD9224E569A00F565CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FA43BDC224E569A00F565CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FA43BDE224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3A5414B22E72D1B00F46876 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		D3A5414B22E72D1B00F46876 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		D3BEC14722DF2B8300BE7802 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		D3D102AC22E60D500036517C /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D102AE22E60D500036517C /* CountOnMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeTests.swift; sourceTree = "<group>"; };
@@ -78,12 +78,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2FC1C02322E20CE90024AC7E /* CountOnMe */ = {
+		2F13118F22F1F65C00105EBA /* Alert Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D3A5414B22E72D1B00F46876 /* AlertPresenter.swift */,
+			);
+			path = "Alert Presenter";
+			sourceTree = "<group>";
+		};
+		2F13119022F1F66F00105EBA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
+				D399418922CE5B680068FDC8 /* View */,
 				D399418A22CE5B6D0068FDC8 /* Controller */,
 				D399418822CE5B620068FDC8 /* Model */,
+				2F13118F22F1F65C00105EBA /* Alert Presenter */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		2FC1C02322E20CE90024AC7E /* CountOnMe */ = {
+			isa = PBXGroup;
+			children = (
+				2F13119022F1F66F00105EBA /* Sources */,
 				D399418B22CE5B7A0068FDC8 /* Ressources */,
 			);
 			path = CountOnMe;
@@ -93,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				D3BEC14722DF2B8300BE7802 /* CalculatorViewModel.swift */,
-				D3A5414B22E72D1B00F46876 /* Alert.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -101,7 +118,6 @@
 		D399418922CE5B680068FDC8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
 				1FA43BD6224E569900F565CB /* Main.storyboard */,
 			);
 			path = View;
@@ -111,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				1FA43BD4224E569900F565CB /* ViewController.swift */,
-				D399418922CE5B680068FDC8 /* View */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -119,6 +134,7 @@
 		D399418B22CE5B7A0068FDC8 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
 				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
 				1FA43BDE224E569A00F565CB /* Info.plist */,
 			);
@@ -234,7 +250,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		D37462B422F19913004DA61D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -245,9 +261,10 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -256,7 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3A5414C22E72D1B00F46876 /* Alert.swift in Sources */,
+				D3A5414C22E72D1B00F46876 /* AlertPresenter.swift in Sources */,
 				1FA43BD5224E569900F565CB /* ViewController.swift in Sources */,
 				D3BEC14822DF2B8300BE7802 /* CalculatorViewModel.swift in Sources */,
 				1FA43BD3224E569900F565CB /* AppDelegate.swift in Sources */,

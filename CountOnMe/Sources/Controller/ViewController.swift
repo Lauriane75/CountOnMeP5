@@ -17,17 +17,17 @@ class ViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel = CalculatorViewModel()
-    let alert = Alert()
 
-    private lazy var alertView = UIAlertController()
+    private lazy var alertPresenter = AlertPresenter()
     
-    // MARK: Life cycle
+    // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
-    
+
     private func bind(to viewModel: CalculatorViewModel) {
         viewModel.displayedText = { [weak self] text in
             self?.screenTextView.text = text
@@ -35,14 +35,16 @@ class ViewController: UIViewController {
 
         viewModel.nextScreen = { [weak self] screen in
             DispatchQueue.main.async {
+                guard let self = self else { return }
                 if case .alert(title: let title, message: let message) = screen {
-                    self!.alert.presentAlert(on: self!, with: title, message: message)
+                    self.alertPresenter.presentAlert(on: self, with: title, message: message)
                 }
             }
         }
     }
     
-    // View actions
+    // MARK: - View actions
+
     @IBAction func tappedOperandsButton(_ sender: UIButton) {
         guard let operandText = sender.title(for: .normal) else {
             return
@@ -59,13 +61,11 @@ class ViewController: UIViewController {
         viewModel.didPressDelete()
     }
     
-    @IBAction func TappedClearButton(_ sender: Any) {
+    @IBAction func tappedClearButton(_ sender: Any) {
         viewModel.didPressClear()
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         viewModel.didPressEqualButton(at: sender.tag)
     }
-   
 }
-

@@ -12,8 +12,25 @@ enum NextScreen: Equatable {
     case alert(title: String, message: String)
 }
 
-class CalculatorViewModel {
-    
+final class CalculatorViewModel {
+
+    // MARK: Private properties
+
+    private var operandsString: [String] = [""]
+
+    private var operatorsString: [String] = ["+"] // start always positive
+
+    private let operatorCases = ["+",
+                                 "-",
+                                 "x",
+                                 "/"]
+
+    private var total: Double = 0
+
+    private var timesEqualButtonTapped = false
+
+    private var timesOperatorButtonTapped: [Int] = []
+
     // MARK: - Outputs
     
     var displayedText: ((String) -> Void)?
@@ -21,11 +38,13 @@ class CalculatorViewModel {
     var nextScreen: ((NextScreen) -> Void)?
     
     // MARK: - Inputs
+
     func viewDidLoad() {
         displayedText?("1+2=3")
     }
     
     func didPressOperand(operand: String) {
+        
         if let number = operandsString.last {
             var stringNumber = number
             stringNumber += "\(operand)"
@@ -35,6 +54,10 @@ class CalculatorViewModel {
             getText()
             displayedText?(temporaryText)
         }
+    }
+
+    func didPressDot() {
+        
     }
     
     func didPressOperator(at index: Int) {
@@ -66,27 +89,11 @@ class CalculatorViewModel {
         clearLast()
     }
     
-    // MARK: Private properties
-    
-    private var operandsString: [String] = [String()]
-    // start always positive
-    private var operatorsString: [String] = ["+"]
-    
-    private let operatorCases = ["+",
-                                 "-",
-                                 "x",
-                                 "/"]
-    
-    private var total: Double = 0
-    
-    private var timesEqualButtonTapped = false
-    private var timesOperatorButtonTapped = [Int]()
-    
     // MARK: - Private Functions
     
     var temporaryText = ""
     
-    fileprivate func getText() {
+    private func getText() {
         temporaryText = ""
         for (i, stringNumber) in operandsString.enumerated() {
             if i > 0 {
@@ -96,7 +103,7 @@ class CalculatorViewModel {
         }
     }
     
-    fileprivate func getCalculPriorities() {
+    private func getCalculPriorities() {
         var operanDs = operandsString
         var operatorS = operatorsString
         while operatorS.contains("x") || operatorS.contains("/") {
@@ -122,7 +129,7 @@ class CalculatorViewModel {
         }
     }
     
-    fileprivate func calcul() -> Double {
+    private func calcul() -> Double {
         var result: Double = 0
         for (index, operands ) in operandsString.enumerated() {
             if let number = Double(operands) {
@@ -138,7 +145,7 @@ class CalculatorViewModel {
         return result
     }
     
-    fileprivate func getResult() -> String {
+    private func getResult() -> String {
         getCalculPriorities()
         let numberformatter = NumberFormatter()
         numberformatter.minimumFractionDigits = 0
@@ -147,27 +154,28 @@ class CalculatorViewModel {
         return total
     }
     
-    fileprivate func clear() {
+    private func clear() {
         resetArrays()
         temporaryText.removeAll()
         displayedText?(temporaryText)
         timesEqualButtonTapped = false
     }
     
-    fileprivate func clearLast() {
+    private func clearLast() {
         if temporaryText != "" {
             temporaryText.removeLast()
             displayedText?(temporaryText)
         }
     }
     
-    fileprivate func resetArrays() {
+    private func resetArrays() {
         operatorsString = ["+"]
         operandsString =  [String()]
     }
     
     // MARK: - Alerts
-   fileprivate func checkZeroDivision() {
+
+    private func checkZeroDivision() {
         if let operands = operandsString.last {
             if operands == "0" && operatorsString.last == "/" {
                 nextScreen?(.alert(title: "Alert", message: "Division par zéro impossible"))
@@ -176,7 +184,7 @@ class CalculatorViewModel {
         }
     }
     
-    fileprivate func checkOperandBegin() {
+    private func checkOperandBegin() {
         if let operands = operandsString.last {
             if operands.isEmpty {
                 if let tempText = temporaryText.first {
@@ -189,12 +197,10 @@ class CalculatorViewModel {
         }
     }
     
-    fileprivate func checkEqualButtonTapped() {
+    private func checkEqualButtonTapped() {
         if temporaryText.contains("=") {
             nextScreen?(.alert(title: "Alert", message: "Entrez une expression correcte!"))
             clear()
         }
     }
 }
-
-
