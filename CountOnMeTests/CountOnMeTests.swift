@@ -21,7 +21,7 @@ final class ViewModelTests: XCTestCase {
     
     // viewModel.viewDidLoad() => displayedText("1+2=3")
     func testGivenAViewModelWhenViewDidLoadThenDisplayedTextIsCorrctlyReturned() {
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 1+2=3")
         viewModel.displayedText = { text in
             XCTAssertEqual(text, "1+2=3")
             expectation.fulfill()
@@ -31,7 +31,7 @@ final class ViewModelTests: XCTestCase {
     }
 
     func testGiven2Minus1WhendidPressEqualButtonThendisplayTextResultIs1() {
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 2-1=1")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -52,7 +52,7 @@ final class ViewModelTests: XCTestCase {
     }
     
     func testGiven2MultiplyBy3WhendidPressEqualButtonThendisplayTextResultIs6() {
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 2x3=6")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -73,7 +73,7 @@ final class ViewModelTests: XCTestCase {
     }
     
     func testGiven4AdditionTo2AddtionTo9WhendidPressEqualButtonThendisplayTextResultIs2() {
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 4+2+9=15")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -95,7 +95,7 @@ final class ViewModelTests: XCTestCase {
     }
     
     func testGiven4DivideBy2WhendidPressEqualButtonThendisplayTextResultIs2() {
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 4/2=2")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -116,7 +116,7 @@ final class ViewModelTests: XCTestCase {
     }
 
     func testGiven2Addition3WhenDidPressEqualButtonThenDisplayTextResultIs5() {
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 2+3=5")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -139,7 +139,7 @@ final class ViewModelTests: XCTestCase {
     // + -
     func testGiven2Plus4Minus1Plus8WhenDidPressEqualButtonThendisplayTextResultIs13() {
         
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 2+4-1+8=13")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -165,7 +165,7 @@ final class ViewModelTests: XCTestCase {
     // x +
     func testGiven2Multiply4Plus1WhenDidPressEqualButtonThendisplayTextResultIs9() {
         
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 2x4+1=9")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -189,7 +189,7 @@ final class ViewModelTests: XCTestCase {
     // x -
     func testGiven2Multiply4Minus1WhenDidPressEqualButtonThendisplayTextResultIs9() {
         
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 2x4-1=7")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -214,7 +214,7 @@ final class ViewModelTests: XCTestCase {
     // x + /
     func testGiven2Multiply4Plus1DivideBy2WhenDidPressEqualButtonThendisplayTextResultIs8Comma5() {
         
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 2x4+1/2=8.5")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -241,7 +241,7 @@ final class ViewModelTests: XCTestCase {
     // x - /
     func testGiven2Multiply4Minus1DivideBy2WhenDidPressEqualButtonThendisplayTextResultIs8Comma5() {
         
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Returned text : 2x4-1/2=7.5")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -267,7 +267,7 @@ final class ViewModelTests: XCTestCase {
     
     func testGiven5Addition2Is5WhenDidPressclearButtonThenDisplayedTextIsCorrctlyCleared() {
         
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Test clear : nothing")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -286,11 +286,10 @@ final class ViewModelTests: XCTestCase {
         
         waitForExpectations(timeout: 1.0, handler: nil)
     }
-    // delete button
-    // à changer (trouver une solution pour les espaces
+  
     func testGiven5AdditionWhenDidPressDeleteButtonThenDisplayedTextIsCorrectlyDeleted() {
         
-        let expectation = self.expectation(description: "Returned text")
+        let expectation = self.expectation(description: "Test Delete : 5+")
         
         var counter = 0
         viewModel.displayedText = { text in
@@ -312,7 +311,7 @@ final class ViewModelTests: XCTestCase {
     }
     
     func testGiven3DivideBy0WhendidPressEqualButtonThenAlertError() {
-        let expectation = self.expectation(description: "Returned alert")
+        let expectation = self.expectation(description: "Returned alert : Division par zéro impossible")
         
         viewModel.nextScreen = { screen in
             XCTAssertEqual(screen, .alert(title: "Alert", message: "Division par zéro impossible"))
@@ -327,7 +326,7 @@ final class ViewModelTests: XCTestCase {
     }
     
     func testGiven3AddtionTo2DivideBy0WhendidPressEqualButtonThenAlertError() {
-        let expectation = self.expectation(description: "Returned alert")
+        let expectation = self.expectation(description: "Returned alert : Division par zéro impossible")
         
         viewModel.nextScreen = { screen in
             XCTAssertEqual(screen, .alert(title: "Alert", message: "Division par zéro impossible"))
@@ -344,7 +343,7 @@ final class ViewModelTests: XCTestCase {
     }
     
     func testGiven3AdditionWhendidPressOperatorAgainThenAlertError() {
-        let expectation = self.expectation(description: "Returned alert")
+        let expectation = self.expectation(description: "Returned alert : Entrez un chiffre!")
         
         viewModel.nextScreen = { screen in
             XCTAssertEqual(screen, .alert(title: "Alert", message: "Entrez un chiffre!"))
@@ -355,8 +354,24 @@ final class ViewModelTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
     
+    func testGiven3AdditionWhendidPressEqualButtonThenAlertError() {
+        let expectation = self.expectation(description: "Returned alert : Entrez une expression correcte!")
+        
+        viewModel.nextScreen = { screen in
+            XCTAssertEqual(screen, .alert(title: "Alert", message: "Entrez une expression correcte!"))
+            expectation.fulfill()
+        }
+        viewModel.viewDidLoad()
+        viewModel.didPressOperand(operand: "3")
+        viewModel.didPressOperator(at: 0)
+        viewModel.didPressEqualButton(at: 4)
+        viewModel.didPressOperand(operand: "1")
+        
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
     func testGiven3Addition3WhendidPressEqualButtonAndAdd1ThenAlertError() {
-        let expectation = self.expectation(description: "Returned alert")
+        let expectation = self.expectation(description: "Returned alert : Entrez une expression correcte!")
         
         viewModel.nextScreen = { screen in
             XCTAssertEqual(screen, .alert(title: "Alert", message: "Entrez une expression correcte!"))
@@ -371,10 +386,26 @@ final class ViewModelTests: XCTestCase {
 
         waitForExpectations(timeout: 1.0, handler: nil)
     }
+    
+    func testGiven3WhendidPressEqualButtonThenAlertError() {
+        let expectation = self.expectation(description: "Returned alert : Entrez un opérateur!")
+        
+        viewModel.nextScreen = { screen in
+            XCTAssertEqual(screen, .alert(title: "Alert", message: "Entrez un opérateur!"))
+            expectation.fulfill()
+        }
+        viewModel.viewDidLoad()
+        viewModel.didPressOperand(operand: "3")
+      
+        viewModel.didPressEqualButton(at: 4)
+        
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
 
+    // bad index of didPressOperator
     func testGivenACalculatorViewModelWhenDidPressOperatorWithABadIndexThenNothingIsReturned() {
 
-        let expectation = self.expectation(description: "Returned alert")
+        let expectation = self.expectation(description: "Nothing returned")
         expectation.isInverted = true
 
         var counter = 0
@@ -394,5 +425,6 @@ final class ViewModelTests: XCTestCase {
 
         waitForExpectations(timeout: 1.0, handler: nil)
     }
+
     
 }

@@ -27,9 +27,7 @@ final class CalculatorViewModel {
 
     private var total: Double = 0
 
-    private var timesEqualButtonTapped = false
-
-    private var timesOperatorButtonTapped: [Int] = []
+    private var timesEqualButtonTapped = [0]
 
     // MARK: - Outputs
     
@@ -43,8 +41,8 @@ final class CalculatorViewModel {
         displayedText?("1+2=3")
     }
     
+    
     func didPressOperand(operand: String) {
-        
         if let number = operandsString.last {
             var stringNumber = number
             stringNumber += "\(operand)"
@@ -68,16 +66,17 @@ final class CalculatorViewModel {
         operatorsString.append(stringOperator)
         operandsString.append("")
         checkEqualButtonTapped()
-        getText()
         checkOperandBegin()
+        getText()
         displayedText?(temporaryText)
     }
     
     func didPressEqualButton(at tag: Int) {
         if tag == 4 {
             temporaryText.append("=\(getResult())")
+            checkOperator()
             displayedText?(temporaryText)
-            timesEqualButtonTapped = true
+            timesEqualButtonTapped.append(1)
         }
     }
     
@@ -139,6 +138,7 @@ final class CalculatorViewModel {
                     result -= number
                 }
                 print ("result : \(result)")
+                print ("temporaryText : \(temporaryText)")
             }
         }
         resetArrays()
@@ -147,6 +147,7 @@ final class CalculatorViewModel {
     
     private func getResult() -> String {
         getCalculPriorities()
+        // number formatter between 0 and 3 after comma
         let numberformatter = NumberFormatter()
         numberformatter.minimumFractionDigits = 0
         numberformatter.maximumFractionDigits = 3
@@ -158,7 +159,7 @@ final class CalculatorViewModel {
         resetArrays()
         temporaryText.removeAll()
         displayedText?(temporaryText)
-        timesEqualButtonTapped = false
+        timesEqualButtonTapped.removeAll()
     }
     
     private func clearLast() {
@@ -198,9 +199,20 @@ final class CalculatorViewModel {
     }
     
     private func checkEqualButtonTapped() {
-        if temporaryText.contains("=") {
+        if timesEqualButtonTapped.count == 1 && temporaryText.contains("=") {
             nextScreen?(.alert(title: "Alert", message: "Entrez une expression correcte!"))
+            print(temporaryText)
             clear()
         }
     }
+    
+    private func checkOperator() {
+        if operatorsString.count == 1 {
+                if temporaryText.contains("=") {
+                    nextScreen?(.alert(title: "Alert", message: "Entrez un opérateur!"))
+                    clear()
+            }
+        }
+    }
+    
 }
