@@ -268,7 +268,7 @@
                                             <action selector="tappedDeleteButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="GuD-cv-X2U"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afu-yW-JpW" userLabel="&lt;-">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afu-yW-JpW">
                                         <rect key="frame" x="199.5" y="0.0" width="51.5" height="95"/>
                                         <color key="backgroundColor" red="0.89941304922103882" green="0.65766352415084839" blue="0.29781150817871094" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -276,7 +276,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedOperandsButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="vFo-Th-VyA"/>
+                                            <action selector="tappedDotButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="o0J-Z5-8qb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj8-Rk-Flg" userLabel="C">

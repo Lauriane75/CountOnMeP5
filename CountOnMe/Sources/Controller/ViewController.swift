@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         guard let operandText = sender.title(for: .normal) else {
             return
         }
-        viewModel.didPressOperand(operand: operandText)
+        viewModel.didPressOperand(operand: Int(operandText)!)
     }
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
         viewModel.didPressOperator(at: sender.tag)
@@ -60,5 +60,8 @@ class ViewController: UIViewController {
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         viewModel.didPressEqualButton(at: sender.tag)
+    }
+    @IBAction func tappedDotButton(_ sender: UIButton) {
+        viewModel.didPressDotButton()
     }
 }

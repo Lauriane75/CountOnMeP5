@@ -37,7 +37,7 @@ final class CalculatorViewModel {
     func viewDidLoad() {
         displayedText?("1+2=3")
     }
-    func didPressOperand(operand: String) {
+    func didPressOperand(operand: Int) {
         if let number = operandsString.last {
             var stringNumber = number
             stringNumber += "\(operand)"
@@ -49,6 +49,9 @@ final class CalculatorViewModel {
         }
     }
     func didPressOperator(at index: Int) {
+//        if operatorsString.last != operatorCases.enumerated() {
+//
+//        }
         guard index < operatorCases.count else {
             return
         }
@@ -60,11 +63,34 @@ final class CalculatorViewModel {
         checkOperandBegin()
         displayedText?(temporaryText)
     }
+
     func didPressEqualButton(at tag: Int) {
         if tag == 4 {
-            temporaryText.append("=\(getResult())")
+            if temporaryText.contains(".") {
+                temporaryText.append("=0\(getResult())")
+            } else {
+                temporaryText.append("=\(getResult())")
+            }
             displayedText?(temporaryText)
             timesEqualButtonTapped = true
+        }
+    }
+
+    func didPressDotButton() {
+        let dot = "."
+        if let number = operandsString.last {
+            var decimal = number
+            if let comma = decimal.last {
+                if comma != dot.last {
+                    if decimal == dot { decimal = "0\(dot)"}
+                    decimal = (decimal) + dot
+                    print ("decimal: \(decimal)")
+                    operandsString[operandsString.count-1] = decimal
+            } else {
+                nextScreen?(.alert(title: "Alert", message: "Ajoutez un chiffre après une virgule!"))
+                clear()
+                }
+            }
         }
     }
     func didPressClear() {
@@ -77,12 +103,13 @@ final class CalculatorViewModel {
     var temporaryText = ""
     private func getText() {
         temporaryText = ""
-        for (item, stringNumber) in operandsString.enumerated() {
-            if item > 0 {
-                temporaryText += operatorsString[item]
+        for (index, stringNumber) in operandsString.enumerated() {
+            if index > 0 {
+                temporaryText += operatorsString[index]
             }
             temporaryText += stringNumber
         }
+        print ("temporaryText get text: \(temporaryText)")
     }
     private func getCalculPriorities() {
         var operanDs = operandsString
@@ -163,7 +190,7 @@ final class CalculatorViewModel {
             if operands.isEmpty {
                 if let tempText = temporaryText.first {
                     if tempText == "+" || tempText == "-" || tempText == "x" || tempText == "/" {
-                        nextScreen?(.alert(title: "Alert", message: "Entrez un chiffre!"))
+                        nextScreen?(.alert(title: "Alert", message: "Commencez par un chiffre!"))
                         clear()
                     }
                 }
