@@ -97,6 +97,7 @@ final class CalculatorViewModel {
                 } else {
                     total = Double(operandLeft / openrandRight)
                 }
+                // debug
                 print ("operators : \(operatorS)")
                 operatorS.remove(at: indexOperator)
                 operanDs[indexOperator - 1] = "\(total)"
@@ -117,6 +118,7 @@ final class CalculatorViewModel {
                 } else if operatorsString[index] == "-" {
                     result -= number
                 }
+                // debug
                 print ("result : \(result)")
             }
         }
