@@ -23,56 +23,65 @@ final class CalculatorViewModel {
     private let operatorCases = ["+",
                                  "-",
                                  "x",
-                                 "/"]
+                                 "/",
+                                 "="]
+
+    private var temporaryText = ""
 
     private var total: Double = 0
 
     private var timesEqualButtonTapped = false
 
     // MARK: - Outputs
+
     var displayedText: ((String) -> Void)?
+
     var nextScreen: ((NextScreen) -> Void)?
+
     // MARK: - Inputs
 
     func viewDidLoad() {
         displayedText?("1+2=3")
+        temporaryText = ""
     }
+
     func didPressOperand(operand: Int) {
         if let number = operandsString.last {
             var stringNumber = number
             stringNumber += "\(operand)"
             operandsString[operandsString.count-1] = stringNumber
-            checkZeroDivision()
             checkEqualButtonTapped()
             getText()
             displayedText?(temporaryText)
         }
     }
     func didPressOperator(at index: Int) {
-//        if operatorsString.last != operatorCases.enumerated() {
-//
-//        }
+        guard !temporaryText.isEmpty else {
+            nextScreen?(.alert(title: "Alerte", message: "Commencez par un chiffre!"))
+            return
+        }
+        guard let lastElement = temporaryText.last?.description, !operatorCases.contains(lastElement) else {
+            nextScreen?(.alert(title: "Alerte", message: "Entrez un chiffre après un opérateur!"))
+            return
+        }
         guard index < operatorCases.count else {
             return
         }
         let stringOperator = operatorCases[index]
-        operatorsString.append(stringOperator)
-        operandsString.append("")
-        checkEqualButtonTapped()
-        getText()
-        checkOperandBegin()
-        displayedText?(temporaryText)
-    }
 
-    func didPressEqualButton(at tag: Int) {
-        if tag == 4 {
-            if temporaryText.contains(".") {
-                temporaryText.append("=0\(getResult())")
-            } else {
-                temporaryText.append("=\(getResult())")
+        if stringOperator == "=" {
+            guard !temporaryText.contains("=") else {
+                nextScreen?(.alert(title: "Alerte", message: "Opération terminée!"))
+                return
             }
+            processCalcul()
+        } else {
+            operatorsString.append(stringOperator)
+            operandsString.append("")
+            checkEqualButtonTapped()
+            getText()
+            checkOperandBegin()
             displayedText?(temporaryText)
-            timesEqualButtonTapped = true
         }
     }
 
@@ -87,20 +96,23 @@ final class CalculatorViewModel {
                     print ("decimal: \(decimal)")
                     operandsString[operandsString.count-1] = decimal
             } else {
-                nextScreen?(.alert(title: "Alert", message: "Ajoutez un chiffre après une virgule!"))
+                nextScreen?(.alert(title: "Alerte", message: "Ajoutez un chiffre après une virgule!"))
                 clear()
                 }
             }
         }
     }
+
     func didPressClear() {
         clear()
     }
+
     func didPressDelete() {
         clearLast()
     }
+
     // MARK: - Private Functions
-    var temporaryText = ""
+
     private func getText() {
         temporaryText = ""
         for (index, stringNumber) in operandsString.enumerated() {
@@ -111,6 +123,18 @@ final class CalculatorViewModel {
         }
         print ("temporaryText get text: \(temporaryText)")
     }
+
+    func processCalcul() {
+        checkZeroDivision()
+        let total = getResult()
+        if total.first == "." {
+            temporaryText.append("=0\(total)")
+        } else {
+            temporaryText.append("=\(total)")
+        }
+        displayedText?(temporaryText)
+    }
+
     private func getCalculPriorities() {
         var operanDs = operandsString
         var operatorS = operatorsString
@@ -136,6 +160,7 @@ final class CalculatorViewModel {
             }
         }
     }
+
     private func calcul() -> Double {
         var result: Double = 0
         for (index, operands ) in operandsString.enumerated() {
@@ -152,6 +177,7 @@ final class CalculatorViewModel {
         resetArrays()
         return result
     }
+
     private func getResult() -> String {
         getCalculPriorities()
         let numberformatter = NumberFormatter()
@@ -160,18 +186,21 @@ final class CalculatorViewModel {
         guard let total = numberformatter.string(from: NSNumber(value: calcul())) else { return "" }
         return total
     }
+
     private func clear() {
         resetArrays()
         temporaryText.removeAll()
         displayedText?(temporaryText)
         timesEqualButtonTapped = false
     }
+
     private func clearLast() {
         if temporaryText != "" {
             temporaryText.removeLast()
             displayedText?(temporaryText)
         }
     }
+
     private func resetArrays() {
         operatorsString = ["+"]
         operandsString =  [String()]
@@ -180,7 +209,7 @@ final class CalculatorViewModel {
     private func checkZeroDivision() {
         if let operands = operandsString.last {
             if operands == "0" && operatorsString.last == "/" {
-                nextScreen?(.alert(title: "Alert", message: "Division par zéro impossible"))
+                nextScreen?(.alert(title: "Alerte", message: "Division par zéro impossible"))
                 clear()
             }
         }
@@ -190,7 +219,7 @@ final class CalculatorViewModel {
             if operands.isEmpty {
                 if let tempText = temporaryText.first {
                     if tempText == "+" || tempText == "-" || tempText == "x" || tempText == "/" {
-                        nextScreen?(.alert(title: "Alert", message: "Commencez par un chiffre!"))
+                        nextScreen?(.alert(title: "Alerte", message: "Commencez par un chiffre!"))
                         clear()
                     }
                 }
@@ -199,7 +228,7 @@ final class CalculatorViewModel {
     }
     private func checkEqualButtonTapped() {
         if temporaryText.contains("=") {
-            nextScreen?(.alert(title: "Alert", message: "Entrez une expression correcte!"))
+            nextScreen?(.alert(title: "Alerte", message: "Entrez une expression correcte!"))
             clear()
         }
     }

@@ -13,10 +13,13 @@ class ViewController: UIViewController {
     // MARK: - Outlets
 
     @IBOutlet weak var screenTextView: UITextView!
+
     // MARK: - Properties
+
     private let viewModel = CalculatorViewModel()
 
     private lazy var alertPresenter = AlertPresenter()
+
     // MARK: - Life cycle
 
     override func viewDidLoad() {
@@ -39,6 +42,7 @@ class ViewController: UIViewController {
             }
         }
     }
+
     // MARK: - View actions
 
     @IBAction func tappedOperandsButton(_ sender: UIButton) {
@@ -47,6 +51,7 @@ class ViewController: UIViewController {
         }
         viewModel.didPressOperand(operand: Int(operandText)!)
     }
+
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
         viewModel.didPressOperator(at: sender.tag)
     }
@@ -54,13 +59,11 @@ class ViewController: UIViewController {
     @IBAction func tappedDeleteButton(_ sender: Any) {
         viewModel.didPressDelete()
     }
+
     @IBAction func tappedClearButton(_ sender: Any) {
         viewModel.didPressClear()
     }
 
-    @IBAction func tappedEqualButton(_ sender: UIButton) {
-        viewModel.didPressEqualButton(at: sender.tag)
-    }
     @IBAction func tappedDotButton(_ sender: UIButton) {
         viewModel.didPressDotButton()
     }
