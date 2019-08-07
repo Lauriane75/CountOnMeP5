@@ -95,6 +95,8 @@ final class CalculatorViewModel {
                     decimal = (decimal) + dot
                     print ("decimal: \(decimal)")
                     operandsString[operandsString.count-1] = decimal
+                    getText()
+                    displayedText?(temporaryText)
             } else {
                 nextScreen?(.alert(title: "Alerte", message: "Ajoutez un chiffre après une virgule!"))
                 clear()
@@ -122,6 +124,7 @@ final class CalculatorViewModel {
             temporaryText += stringNumber
         }
         print ("temporaryText get text: \(temporaryText)")
+        displayedText?(temporaryText)
     }
 
     func processCalcul() {
