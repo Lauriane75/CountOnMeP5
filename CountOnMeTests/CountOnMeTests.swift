@@ -35,7 +35,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 2-1=1")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 4 {
+            if counter == 7 {
                 XCTAssertEqual(text, "2-1=1")
                 expectation.fulfill()
             }
@@ -55,7 +55,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 2x3=6")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 4 {
+            if counter == 7 {
                 XCTAssertEqual(text, "2x3=6")
                 expectation.fulfill()
             }
@@ -75,7 +75,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 4+2+9=15")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 6 {
+            if counter == 11 {
                 XCTAssertEqual(text, "4+2+9=15")
                 expectation.fulfill()
             }
@@ -97,7 +97,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 4/2=2")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 4 {
+            if counter == 7 {
                 XCTAssertEqual(text, "4/2=2")
                 expectation.fulfill()
             }
@@ -117,7 +117,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 2+3=5")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 4 {
+            if counter == 7 {
                 XCTAssertEqual(text, "2+3=5")
                 expectation.fulfill()
             }
@@ -137,7 +137,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 2+4-1+8=13")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 8 {
+            if counter == 15 {
                 XCTAssertEqual(text, "2+4-1+8=13")
                 expectation.fulfill()
             }
@@ -161,7 +161,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 2x4+1=9")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 6 {
+            if counter == 11 {
                 XCTAssertEqual(text, "2x4+1=9")
                 expectation.fulfill()
             }
@@ -183,7 +183,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 2x4-1=7")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 6 {
+            if counter == 11 {
                 XCTAssertEqual(text, "2x4-1=7")
                 expectation.fulfill()
             }
@@ -205,7 +205,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 2x4+1/2=8.5")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 8 {
+            if counter == 15 {
                 XCTAssertEqual(text, "2x4+1/2=8.5")
                 expectation.fulfill()
             }
@@ -229,7 +229,7 @@ final class ViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Returned text : 2x4-1/2=7.5")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 8 {
+            if counter == 15 {
                 XCTAssertEqual(text, "2x4-1/2=7.5")
                 expectation.fulfill()
             }
@@ -249,11 +249,37 @@ final class ViewModelTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 
+    func testGiven7Dot56multiply4Dot52WhenDidPressEqualButtonThendisplayTextResultIs() {
+        let expectation = self.expectation(description: "Returned text : 3/6=0.5")
+        var counter = 0
+        viewModel.displayedText = { text in
+            if counter == 19 {
+                XCTAssertEqual(text, "7.56x4.52=34.171")
+                expectation.fulfill()
+            }
+            counter += 1
+        }
+        viewModel.viewDidLoad()
+        viewModel.didPressOperand(operand: 7)
+        viewModel.didPressDotButton()
+        viewModel.didPressOperand(operand: 5)
+        viewModel.didPressOperand(operand: 6)
+        viewModel.didPressOperator(at: 2)
+        viewModel.didPressOperand(operand: 4)
+        viewModel.didPressDotButton()
+        viewModel.didPressOperand(operand: 5)
+        viewModel.didPressOperand(operand: 2)
+
+        viewModel.didPressOperator(at: 4)
+
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
     func testGiven3DivideBy6WhenDidPressEqualButtonThendisplayTextResultIsZeroComma5() {
         let expectation = self.expectation(description: "Returned text : 3/6=0.5")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 4 {
+            if counter == 7 {
                 XCTAssertEqual(text, "3/6=0.5")
                 expectation.fulfill()
             }
@@ -268,11 +294,12 @@ final class ViewModelTests: XCTestCase {
 
         waitForExpectations(timeout: 1.0, handler: nil)
     }
+
     func testGiven5Addition2Is5WhenDidPressclearButtonThenDisplayedTextIsCorrctlyCleared() {
         let expectation = self.expectation(description: "Returned text : nothing")
         var counter = 0
         viewModel.displayedText = { text in
-            if counter == 4 {
+            if counter == 7 {
                 XCTAssertEqual(text, "")
                 expectation.fulfill()
             }
@@ -324,7 +351,36 @@ final class ViewModelTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 
-    func testGiven3AdditionWhendidPressOperatorAgainThenAlertError() {
+    func testGiven5Addition2AndDidPressClearWhenDidPressOperatorButtonThenAlertError() {
+        let expectation = self.expectation(description: "Commencez par un chiffre!")
+        viewModel.nextScreen = { screen in
+            XCTAssertEqual(screen, .alert(title: "Alerte", message: "Commencez par un chiffre!"))
+            expectation.fulfill()
+        }
+        viewModel.viewDidLoad()
+        viewModel.didPressOperand(operand: 5)
+        viewModel.didPressOperator(at: 0)
+        viewModel.didPressOperand(operand: 2)
+
+        viewModel.didPressClear()
+
+        viewModel.didPressOperator(at: 1)
+
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    func testViewModelWhendidPressOperatorAgainThenAlertError() {
+        let expectation = self.expectation(description: "Commencez par un chiffre!")
+        viewModel.nextScreen = { screen in
+            XCTAssertEqual(screen, .alert(title: "Alerte", message: "Commencez par un chiffre!"))
+            expectation.fulfill()
+        }
+        viewModel.viewDidLoad()
+        viewModel.didPressOperator(at: 1)
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    func testViewModelWhendidPressOperatorThenAlertError() {
         let expectation = self.expectation(description: "Commencez par un chiffre!")
         viewModel.nextScreen = { screen in
             XCTAssertEqual(screen, .alert(title: "Alerte", message: "Commencez par un chiffre!"))
@@ -393,8 +449,8 @@ final class ViewModelTests: XCTestCase {
 
         var counter = 0
         viewModel.displayedText = { _ in
-            if counter == 2 {
-                XCTFail()
+            if counter == 4 {
+                XCTFail("count == 2")
                 expectation.fulfill()
             }
             counter += 1
