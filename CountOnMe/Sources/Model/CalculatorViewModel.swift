@@ -139,13 +139,13 @@ final class CalculatorViewModel {
     }
 
     private func getCalculPriorities() {
-        var operanDs = operandsString
+        var operandS = operandsString
         var operatorS = operatorsString
         while operatorS.contains("x") || operatorS.contains("/") {
             if let indexOperator = operatorS.firstIndex (where: { $0 == "x" || $0 == "/" }) {
                 let operatoR = operatorS[indexOperator]
-                guard let operandLeft = Double(operanDs[indexOperator - 1]) else { return }
-                guard let openrandRight = Double(operanDs[indexOperator]) else { return }
+                guard let operandLeft = Double(operandS[indexOperator - 1]) else { return }
+                guard let openrandRight = Double(operandS[indexOperator]) else { return }
                 if operatoR == "x" {
                     total = Double(operandLeft * openrandRight)
                 } else {
@@ -154,9 +154,9 @@ final class CalculatorViewModel {
                 // debug
                 print ("operators : \(operatorS)")
                 operatorS.remove(at: indexOperator)
-                operanDs[indexOperator - 1] = "\(total)"
-                operanDs.remove(at: indexOperator)
-                operandsString = operanDs
+                operandS[indexOperator - 1] = "\(total)"
+                operandS.remove(at: indexOperator)
+                operandsString = operandS
                 print ("operandsString : \(operandsString)")
                 operatorsString = operatorS
                 print ("operators less x || / : \(operatorsString)")
