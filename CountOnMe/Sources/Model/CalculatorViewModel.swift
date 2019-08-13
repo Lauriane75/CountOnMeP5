@@ -30,8 +30,6 @@ final class CalculatorViewModel {
 
     private var total: Double = 0
 
-    private var timesEqualButtonTapped = false
-
     // MARK: - Outputs
 
     var displayedText: ((String) -> Void)?
@@ -194,7 +192,6 @@ final class CalculatorViewModel {
         resetArrays()
         temporaryText.removeAll()
         displayedText?(temporaryText)
-        timesEqualButtonTapped = false
     }
 
     private func clearLast() {
