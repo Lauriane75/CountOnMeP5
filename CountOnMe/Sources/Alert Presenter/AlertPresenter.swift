@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class AlertPresenter {
+extension ViewController {
 
     // MARK: - Alert
 

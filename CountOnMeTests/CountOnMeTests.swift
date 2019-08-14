@@ -335,6 +335,28 @@ final class ViewModelTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 
+//    func testGiven5Plus2WhenDidPressDeleteButtonAndAdd1AndEqualThenDisplayedTextIs() {
+//        let expectation = self.expectation(description: "Returned text : 5+")
+//        var counter = 0
+//        viewModel.displayedText = { text in
+//            if counter == 10 {
+//                XCTAssertEqual(text, "5+1=6")
+//                expectation.fulfill()
+//            }
+//            counter += 1
+//        }
+//        viewModel.viewDidLoad()
+//        viewModel.didPressOperand(operand: 5)
+//        viewModel.didPressOperator(at: 0)
+//        viewModel.didPressOperand(operand: 2)
+//
+//        viewModel.didPressDelete()
+//        viewModel.didPressOperand(operand: 1)
+//        viewModel.didPressOperator(at: 4)
+//
+//        waitForExpectations(timeout: 1.0, handler: nil)
+//    }
+
     func testGiven3DivideBy0WhendidPressEqualButtonThenAlertError() {
         let expectation = self.expectation(description: "Division par zéro impossible")
         viewModel.nextScreen = { screen in

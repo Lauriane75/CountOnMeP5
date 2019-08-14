@@ -18,8 +18,6 @@ class ViewController: UIViewController {
 
     private let viewModel = CalculatorViewModel()
 
-    private lazy var alertPresenter = AlertPresenter()
-
     // MARK: - Life cycle
 
     override func viewDidLoad() {
@@ -37,7 +35,7 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 if case .alert(title: let title, message: let message) = screen {
-                    self.alertPresenter.presentAlert(on: self, with: title, message: message)
+                    self.presentAlert(on: self, with: title, message: message)
                 }
             }
         }

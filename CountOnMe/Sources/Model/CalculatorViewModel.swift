@@ -43,6 +43,7 @@ final class CalculatorViewModel {
         temporaryText = ""
     }
 
+    /// Add operands
     func didPressOperand(operand: Int) {
         if let number = operandsString.last {
             var stringNumber = number
@@ -53,6 +54,8 @@ final class CalculatorViewModel {
             displayedText?(temporaryText)
         }
     }
+
+    /// Add operators
     func didPressOperator(at index: Int) {
         guard !temporaryText.isEmpty else {
             nextScreen?(.alert(title: "Alerte", message: "Commencez par un chiffre!"))
@@ -83,6 +86,7 @@ final class CalculatorViewModel {
         }
     }
 
+    /// Add dot button
     func didPressDotButton() {
         let dot = "."
         if let number = operandsString.last {
@@ -136,6 +140,7 @@ final class CalculatorViewModel {
         displayedText?(temporaryText)
     }
 
+    /// calculation priorities (select and reduce calcul with x or /)
     private func getCalculPriorities() {
         var operandS = operandsString
         var operatorS = operatorsString
@@ -162,6 +167,7 @@ final class CalculatorViewModel {
         }
     }
 
+    /// calcul after reduce with + and - operators
     private func calcul() -> Double {
         var result: Double = 0
         for (index, operands ) in operandsString.enumerated() {
@@ -179,6 +185,7 @@ final class CalculatorViewModel {
         return result
     }
 
+    /// get the final result and format it with 3 numbers max after dot
     private func getResult() -> String {
         getCalculPriorities()
         let numberformatter = NumberFormatter()
@@ -188,12 +195,14 @@ final class CalculatorViewModel {
         return total
     }
 
+    /// clear operands and operators arrays, temporaryText and displayedText
     private func clear() {
         resetArrays()
         temporaryText.removeAll()
         displayedText?(temporaryText)
     }
 
+    /// clear last in temporaryText and displayedText
     private func clearLast() {
         if temporaryText != "" {
             temporaryText.removeLast()
