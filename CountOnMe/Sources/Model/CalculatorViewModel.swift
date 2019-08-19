@@ -52,7 +52,6 @@ final class CalculatorViewModel {
             var stringNumber = number
             stringNumber += "\(operand)"
             operandsString[operandsString.count-1] = stringNumber
-            checkEqualButtonTapped()
             getText()
         }
     }
@@ -73,15 +72,10 @@ final class CalculatorViewModel {
         let stringOperator = operatorCases[index]
 
         if stringOperator == "=" {
-            guard !temporaryText.contains("=") else {
-                nextScreen?(.alert(title: "Alerte", message: "Opération terminée!"))
-                return
-            }
             processCalcul()
         } else {
             operatorsString.append(stringOperator)
             operandsString.append("")
-            checkEqualButtonTapped()
             getText()
             checkOperandBegin()
         }
@@ -90,7 +84,7 @@ final class CalculatorViewModel {
     /// Add dot button
     func didPressDotButton() {
         let dot = "."
-        if let number = operandsString.last {
+        guard let number = operandsString.last else { return }
             var decimal = number
             if let comma = decimal.last {
                 if comma != dot.last {
@@ -102,7 +96,6 @@ final class CalculatorViewModel {
             } else {
                 nextScreen?(.alert(title: "Alerte", message: "Ajoutez un chiffre après une virgule!"))
                 clear()
-                }
             }
         }
     }
@@ -243,10 +236,5 @@ final class CalculatorViewModel {
             }
         }
     }
-    private func checkEqualButtonTapped() {
-        if temporaryText.contains("=") {
-            nextScreen?(.alert(title: "Alerte", message: "Entrez une expression correcte!"))
-            clear()
-        }
-    }
+
 }
