@@ -26,7 +26,11 @@ final class CalculatorViewModel {
                                  "/",
                                  "="]
 
-    private var temporaryText = ""
+    private var temporaryText = "" {
+        didSet {
+            displayedText?(temporaryText)
+        }
+    }
 
     private var total: Double = 0
 
@@ -39,8 +43,7 @@ final class CalculatorViewModel {
     // MARK: - Inputs
 
     func viewDidLoad() {
-        displayedText?("1+2=3")
-        temporaryText = ""
+        temporaryText = "0"
     }
 
     /// Add operands
@@ -51,7 +54,6 @@ final class CalculatorViewModel {
             operandsString[operandsString.count-1] = stringNumber
             checkEqualButtonTapped()
             getText()
-            displayedText?(temporaryText)
         }
     }
 
@@ -82,7 +84,6 @@ final class CalculatorViewModel {
             checkEqualButtonTapped()
             getText()
             checkOperandBegin()
-            displayedText?(temporaryText)
         }
     }
 
@@ -98,7 +99,6 @@ final class CalculatorViewModel {
                     print ("decimal: \(decimal)")
                     operandsString[operandsString.count-1] = decimal
                     getText()
-                    displayedText?(temporaryText)
             } else {
                 nextScreen?(.alert(title: "Alerte", message: "Ajoutez un chiffre après une virgule!"))
                 clear()
@@ -126,18 +126,18 @@ final class CalculatorViewModel {
             temporaryText += stringNumber
         }
         print ("temporaryText get text: \(temporaryText)")
-        displayedText?(temporaryText)
     }
 
     func processCalcul() {
         checkZeroDivision()
         let total = getResult()
+        temporaryText.removeAll()
+        resetArrays()
         if total.first == "." {
-            temporaryText.append("=0\(total)")
+            temporaryText.append("0\(total)")
         } else {
-            temporaryText.append("=\(total)")
+            temporaryText.append("\(total)")
         }
-        displayedText?(temporaryText)
     }
 
     /// calculation priorities (select and reduce calcul with x or /)
@@ -199,20 +199,28 @@ final class CalculatorViewModel {
     private func clear() {
         resetArrays()
         temporaryText.removeAll()
-        displayedText?(temporaryText)
     }
 
     /// clear last in temporaryText and displayedText
     private func clearLast() {
-        if temporaryText != "" {
-            temporaryText.removeLast()
-            displayedText?(temporaryText)
+        if temporaryText.last == operatorsString.last?.description.last {
+            guard let element = operatorsString.last, let index = operatorsString.index(of: element) else { return }
+            guard operatorsString[index].isEmpty == false else { return }
+            operatorsString[index].removeLast()
         }
+
+        if temporaryText.last == operandsString.last?.description.last {
+            guard let element = operandsString.last, let index = operandsString.index(of: element) else { return }
+            guard operandsString[index].isEmpty == false else { return }
+            operandsString[index].removeLast()
+        }
+
+        temporaryText.removeLast()
     }
 
     private func resetArrays() {
         operatorsString = ["+"]
-        operandsString =  [String()]
+        operandsString =  [""]
     }
     // MARK: - Alerts
     private func checkZeroDivision() {
