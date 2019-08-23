@@ -33,10 +33,14 @@ class CountOnMeUITests: XCTestCase {
         // Make sure we're displaying onboarding
 //        XCTAssertTrue(app.isDisplayingOnboarding)
 
-
+        let app = XCUIApplication()
+        app.buttons["1"].tap()
+        app.buttons["+"].tap()
+        app.buttons["2"].tap()
+        app.buttons["="].tap()
 
         // Tap the "Done" button
-        app.buttons["1"].tap()
+
 
         // Onboarding should no longer be displayed
 //        XCTAssertFalse(app.isDisplayingOnboarding)
