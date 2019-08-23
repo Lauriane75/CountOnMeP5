@@ -7,5 +7,6 @@ target 'CountOnMe' do
 
   # Pods for CountOnMe
 pod 'SwiftLint'
+pod 'iOSSnapshotTestCase'
 
 end

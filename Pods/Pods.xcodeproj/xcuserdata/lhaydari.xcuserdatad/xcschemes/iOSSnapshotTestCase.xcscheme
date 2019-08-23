@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F22496F9B4337E050896A02CBA0E2743"
-               BuildableName = "Pods_CountOnMe.framework"
-               BlueprintName = "Pods-CountOnMe"
+               BlueprintIdentifier = "C393038B0BEF088C1B93E6528005862D"
+               BuildableName = "FBSnapshotTestCase.framework"
+               BlueprintName = "iOSSnapshotTestCase"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F22496F9B4337E050896A02CBA0E2743"
-            BuildableName = "Pods_CountOnMe.framework"
-            BlueprintName = "Pods-CountOnMe"
+            BlueprintIdentifier = "C393038B0BEF088C1B93E6528005862D"
+            BuildableName = "FBSnapshotTestCase.framework"
+            BlueprintName = "iOSSnapshotTestCase"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
