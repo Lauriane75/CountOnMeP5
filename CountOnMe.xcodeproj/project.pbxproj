@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,14 +13,16 @@
 		1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD9224E569A00F565CB /* Assets.xcassets */; };
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
 		D1102782446C17BEAB4CD718 /* Pods_CountOnMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9819DC70ECFADE0CCAAF0FFB /* Pods_CountOnMe.framework */; };
-		D33114FF230EF1C800B56F97 /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33114FE230EF1C800B56F97 /* CountOnMeUITests.swift */; };
+		D39666702313FE65004C61CD /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396666F2313FE65004C61CD /* CountOnMeUITests.swift */; };
+		D39666772313FF3E004C61CD /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3483ADD2313FC1100356EBA /* FBSnapshotTestCase.framework */; };
+		D39666782313FF4F004C61CD /* FBSnapshotTestCase.framework in Resources */ = {isa = PBXBuildFile; fileRef = D3483ADD2313FC1100356EBA /* FBSnapshotTestCase.framework */; };
 		D3A5414C22E72D1B00F46876 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A5414B22E72D1B00F46876 /* AlertPresenter.swift */; };
 		D3BEC14822DF2B8300BE7802 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEC14722DF2B8300BE7802 /* CalculatorViewModel.swift */; };
 		D3D102AF22E60D500036517C /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D102AE22E60D500036517C /* CountOnMeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D3311501230EF1C800B56F97 /* PBXContainerItemProxy */ = {
+		D39666722313FE65004C61CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1FA43BC7224E569900F565CB /* Project object */;
 			proxyType = 1;
@@ -46,9 +48,10 @@
 		1FA43BDE224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55830AF1CD0D8CD9CE255593 /* Pods-CountOnMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountOnMe.debug.xcconfig"; path = "Target Support Files/Pods-CountOnMe/Pods-CountOnMe.debug.xcconfig"; sourceTree = "<group>"; };
 		9819DC70ECFADE0CCAAF0FFB /* Pods_CountOnMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CountOnMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D33114FC230EF1C800B56F97 /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D33114FE230EF1C800B56F97 /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
-		D3311500230EF1C800B56F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3483ADD2313FC1100356EBA /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = Carthage/Build/iOS/FBSnapshotTestCase.framework; sourceTree = "<group>"; };
+		D396666D2313FE65004C61CD /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D396666F2313FE65004C61CD /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
+		D39666712313FE65004C61CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3A5414B22E72D1B00F46876 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		D3BEC14722DF2B8300BE7802 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		D3D102AC22E60D500036517C /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,10 +69,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D33114F9230EF1C800B56F97 /* Frameworks */ = {
+		D396666A2313FE65004C61CD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D39666772313FF3E004C61CD /* FBSnapshotTestCase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,9 +98,10 @@
 		1FA43BC6224E569900F565CB = {
 			isa = PBXGroup;
 			children = (
+				D3483ADD2313FC1100356EBA /* FBSnapshotTestCase.framework */,
 				2FC1C02322E20CE90024AC7E /* CountOnMe */,
 				D3D102AD22E60D500036517C /* CountOnMeTests */,
-				D33114FD230EF1C800B56F97 /* CountOnMeUITests */,
+				D396666E2313FE65004C61CD /* CountOnMeUITests */,
 				1FA43BD0224E569900F565CB /* Products */,
 				388004CBF4E913EB6981B17B /* Pods */,
 				0DCAF96E6B900B9D7A5B4C17 /* Frameworks */,
@@ -108,7 +113,7 @@
 			children = (
 				1FA43BCF224E569900F565CB /* CountOnMe.app */,
 				D3D102AC22E60D500036517C /* CountOnMeTests.xctest */,
-				D33114FC230EF1C800B56F97 /* CountOnMeUITests.xctest */,
+				D396666D2313FE65004C61CD /* CountOnMeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,11 +156,11 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		D33114FD230EF1C800B56F97 /* CountOnMeUITests */ = {
+		D396666E2313FE65004C61CD /* CountOnMeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D33114FE230EF1C800B56F97 /* CountOnMeUITests.swift */,
-				D3311500230EF1C800B56F97 /* Info.plist */,
+				D396666F2313FE65004C61CD /* CountOnMeUITests.swift */,
+				D39666712313FE65004C61CD /* Info.plist */,
 			);
 			path = CountOnMeUITests;
 			sourceTree = "<group>";
@@ -215,7 +220,6 @@
 				1FA43BCC224E569900F565CB /* Frameworks */,
 				1FA43BCD224E569900F565CB /* Resources */,
 				D37462B422F19913004DA61D /* ShellScript */,
-				8ACD44F38942A94D968BA891 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -226,22 +230,22 @@
 			productReference = 1FA43BCF224E569900F565CB /* CountOnMe.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D33114FB230EF1C800B56F97 /* CountOnMeUITests */ = {
+		D396666C2313FE65004C61CD /* CountOnMeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D3311505230EF1C800B56F97 /* Build configuration list for PBXNativeTarget "CountOnMeUITests" */;
+			buildConfigurationList = D39666762313FE65004C61CD /* Build configuration list for PBXNativeTarget "CountOnMeUITests" */;
 			buildPhases = (
-				D33114F8230EF1C800B56F97 /* Sources */,
-				D33114F9230EF1C800B56F97 /* Frameworks */,
-				D33114FA230EF1C800B56F97 /* Resources */,
+				D39666692313FE65004C61CD /* Sources */,
+				D396666A2313FE65004C61CD /* Frameworks */,
+				D396666B2313FE65004C61CD /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D3311502230EF1C800B56F97 /* PBXTargetDependency */,
+				D39666732313FE65004C61CD /* PBXTargetDependency */,
 			);
 			name = CountOnMeUITests;
 			productName = CountOnMeUITests;
-			productReference = D33114FC230EF1C800B56F97 /* CountOnMeUITests.xctest */;
+			productReference = D396666D2313FE65004C61CD /* CountOnMeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		D3D102AB22E60D500036517C /* CountOnMeTests */ = {
@@ -274,9 +278,8 @@
 				TargetAttributes = {
 					1FA43BCE224E569900F565CB = {
 						CreatedOnToolsVersion = 10.2;
-						LastSwiftMigration = 1030;
 					};
-					D33114FB230EF1C800B56F97 = {
+					D396666C2313FE65004C61CD = {
 						CreatedOnToolsVersion = 10.3;
 						TestTargetID = 1FA43BCE224E569900F565CB;
 					};
@@ -301,7 +304,7 @@
 			targets = (
 				1FA43BCE224E569900F565CB /* CountOnMe */,
 				D3D102AB22E60D500036517C /* CountOnMeTests */,
-				D33114FB230EF1C800B56F97 /* CountOnMeUITests */,
+				D396666C2313FE65004C61CD /* CountOnMeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -317,10 +320,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D33114FA230EF1C800B56F97 /* Resources */ = {
+		D396666B2313FE65004C61CD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D39666782313FF4F004C61CD /* FBSnapshotTestCase.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,23 +338,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8ACD44F38942A94D968BA891 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CountOnMe/Pods-CountOnMe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CountOnMe/Pods-CountOnMe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CountOnMe/Pods-CountOnMe-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BF8459D60C9C5059BF4E9017 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,11 +391,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D33114F8230EF1C800B56F97 /* Sources */ = {
+		D39666692313FE65004C61CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33114FF230EF1C800B56F97 /* CountOnMeUITests.swift in Sources */,
+				D39666702313FE65004C61CD /* CountOnMeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,10 +410,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D3311502230EF1C800B56F97 /* PBXTargetDependency */ = {
+		D39666732313FE65004C61CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1FA43BCE224E569900F565CB /* CountOnMe */;
-			targetProxy = D3311501230EF1C800B56F97 /* PBXContainerItemProxy */;
+			targetProxy = D39666722313FE65004C61CD /* PBXContainerItemProxy */;
 		};
 		D3D102B222E60D500036517C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -609,11 +596,15 @@
 			};
 			name = Release;
 		};
-		D3311503230EF1C800B56F97 /* Debug */ = {
+		D39666742313FE65004C61CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 568UZNMWK9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CountOnMeUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -629,11 +620,15 @@
 			};
 			name = Debug;
 		};
-		D3311504230EF1C800B56F97 /* Release */ = {
+		D39666752313FE65004C61CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 568UZNMWK9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CountOnMeUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -710,11 +705,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D3311505230EF1C800B56F97 /* Build configuration list for PBXNativeTarget "CountOnMeUITests" */ = {
+		D39666762313FE65004C61CD /* Build configuration list for PBXNativeTarget "CountOnMeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D3311503230EF1C800B56F97 /* Debug */,
-				D3311504230EF1C800B56F97 /* Release */,
+				D39666742313FE65004C61CD /* Debug */,
+				D39666752313FE65004C61CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

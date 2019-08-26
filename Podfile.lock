@@ -1,33 +1,16 @@
 PODS:
-  - FBSDKCoreKit (5.3.0):
-    - FBSDKCoreKit/Basics (= 5.3.0)
-    - FBSDKCoreKit/Core (= 5.3.0)
-  - FBSDKCoreKit/Basics (5.3.0)
-  - FBSDKCoreKit/Core (5.3.0):
-    - FBSDKCoreKit/Basics
-  - iOSSnapshotTestCase (6.1.0):
-    - iOSSnapshotTestCase/SwiftSupport (= 6.1.0)
-  - iOSSnapshotTestCase/Core (6.1.0)
-  - iOSSnapshotTestCase/SwiftSupport (6.1.0):
-    - iOSSnapshotTestCase/Core
   - SwiftLint (0.34.0)
 
 DEPENDENCIES:
-  - FBSDKCoreKit
-  - iOSSnapshotTestCase
   - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - FBSDKCoreKit
-    - iOSSnapshotTestCase
     - SwiftLint
 
 SPEC CHECKSUMS:
-  FBSDKCoreKit: 39748deefe37a005f983722e433be2ddcdd83ae7
-  iOSSnapshotTestCase: 30d540b0c8feb9d7f8ff97acc25a3804b48ee264
   SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
 
-PODFILE CHECKSUM: 049044aeb9c3015dda858bafd04d4eef8824ae9c
+PODFILE CHECKSUM: f53dec3c27ababa59913aaf8f09510582050509e
 
 COCOAPODS: 1.7.5

@@ -2,48 +2,34 @@
 //  CountOnMeUITests.swift
 //  CountOnMeUITests
 //
-//  Created by Lauriane Haydari on 22/08/2019.
+//  Created by Lauriane Haydari on 26/08/2019.
 //  Copyright © 2019 Vincent Saluzzo. All rights reserved.
 //
 
 import XCTest
+import FBSnapshotTestCase
 
 class CountOnMeUITests: XCTestCase {
-    var app: XCUIApplication!
 
     override func setUp() {
-        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        // Since UI tests are more expensive to run, it's usually a good idea
-        // to exit if a failure was encountered
+        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
-        app = XCUIApplication()
+        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+        XCUIApplication().launch()
 
-        // We send a command line argument to our app,
-        // to enable it to reset its state
-        app.launchArguments.append("--uitesting")
-}
+        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    }
 
-    // MARK: - Tests
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
 
-    func testGoingThroughOnboarding() {
-        app.launch()
-
-        // Make sure we're displaying onboarding
-//        XCTAssertTrue(app.isDisplayingOnboarding)
-
-        let app = XCUIApplication()
-        app.buttons["1"].tap()
-        app.buttons["+"].tap()
-        app.buttons["2"].tap()
-        app.buttons["="].tap()
-
-        // Tap the "Done" button
-
-
-        // Onboarding should no longer be displayed
-//        XCTAssertFalse(app.isDisplayingOnboarding)
+    func testExample() {
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
 }

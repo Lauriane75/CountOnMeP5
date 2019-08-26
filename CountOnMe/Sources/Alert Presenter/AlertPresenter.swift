@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-final class AlertPresenter {
+extension ViewController {
 
     // MARK: - Alert
 
-    func presentAlert(on viewController: UIViewController, with title: String, message: String) {
+     func presentAlert(on viewController: UIViewController, with title: String, message: String) {
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertView.addAction(okAction)
