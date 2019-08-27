@@ -16,6 +16,9 @@
 		D39666702313FE65004C61CD /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396666F2313FE65004C61CD /* CountOnMeUITests.swift */; };
 		D39666772313FF3E004C61CD /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3483ADD2313FC1100356EBA /* FBSnapshotTestCase.framework */; };
 		D39666782313FF4F004C61CD /* FBSnapshotTestCase.framework in Resources */ = {isa = PBXBuildFile; fileRef = D3483ADD2313FC1100356EBA /* FBSnapshotTestCase.framework */; };
+		D396667C231409F1004C61CD /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3483ADD2313FC1100356EBA /* FBSnapshotTestCase.framework */; };
+		D396667D231409F5004C61CD /* FBSnapshotTestCase.framework in Resources */ = {isa = PBXBuildFile; fileRef = D3483ADD2313FC1100356EBA /* FBSnapshotTestCase.framework */; };
+		D396667F23140A2D004C61CD /* CountOnMeFBSnapShotTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396667E23140A2D004C61CD /* CountOnMeFBSnapShotTestCase.swift */; };
 		D3A5414C22E72D1B00F46876 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A5414B22E72D1B00F46876 /* AlertPresenter.swift */; };
 		D3BEC14822DF2B8300BE7802 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BEC14722DF2B8300BE7802 /* CalculatorViewModel.swift */; };
 		D3D102AF22E60D500036517C /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D102AE22E60D500036517C /* CountOnMeTests.swift */; };
@@ -52,6 +55,7 @@
 		D396666D2313FE65004C61CD /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D396666F2313FE65004C61CD /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
 		D39666712313FE65004C61CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D396667E23140A2D004C61CD /* CountOnMeFBSnapShotTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeFBSnapShotTestCase.swift; sourceTree = "<group>"; };
 		D3A5414B22E72D1B00F46876 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		D3BEC14722DF2B8300BE7802 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		D3D102AC22E60D500036517C /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D396667C231409F1004C61CD /* FBSnapshotTestCase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				D3D102AE22E60D500036517C /* CountOnMeTests.swift */,
+				D396667E23140A2D004C61CD /* CountOnMeFBSnapShotTestCase.swift */,
 				D3D102B022E60D500036517C /* Info.plist */,
 			);
 			path = CountOnMeTests;
@@ -278,6 +284,7 @@
 				TargetAttributes = {
 					1FA43BCE224E569900F565CB = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1030;
 					};
 					D396666C2313FE65004C61CD = {
 						CreatedOnToolsVersion = 10.3;
@@ -332,6 +339,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D396667D231409F5004C61CD /* FBSnapshotTestCase.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D396667F23140A2D004C61CD /* CountOnMeFBSnapShotTestCase.swift in Sources */,
 				D3D102AF22E60D500036517C /* CountOnMeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +659,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 568UZNMWK9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CountOnMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -670,6 +683,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 568UZNMWK9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CountOnMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
